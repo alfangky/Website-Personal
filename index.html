@@ -206,32 +206,231 @@
 
  
     /* About Section Styles */
-    .about {
-      display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        padding: 2rem 0;
-        }
+    .about-container {
+    min-height: 15vh;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
 
-        .about-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
+.image-trigger {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 2;
+}
 
-        .about-image {
-            position: relative;
-        }
+.image-trigger img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
 
-        .about-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+.image-trigger::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #222020, #5c5d5e, #000000, #363535);
+    animation: rotate 4s linear infinite;
+    opacity: 0.7;
+    z-index: -1;
+}
+
+.image-trigger::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #706767, #5c5d5e, #000000, #898091);
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.image-trigger:hover {
+    transform: scale(1.05);
+}
+
+.image-trigger:hover::after {
+    opacity: 0.3;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.content-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+    z-index: 10;
+}
+
+.content-overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.about-content {
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.5s ease 0.2s;
+}
+
+.content-overlay.active .about-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.about-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, #00ff87, #60efff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.text-reveal {
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.text-reveal p {
+    transform: translateY(100%);
+    opacity: 0;
+    transition: all 0.5s ease;
+    margin: 0;
+    line-height: 1.8;
+    color: #ccc;
+}
+
+.content-overlay.active .text-reveal p {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.close-button {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-button:hover {
+    transform: rotate(90deg);
+}
+
+.highlight-text {
+    color: #00ff87;
+    font-weight: bold;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.content-overlay.active .social-link {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.social-link:hover {
+    background: #00ff87;
+    transform: translateY(-5px);
+}
+
+.interest-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.tag {
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.content-overlay.active .tag {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pulse-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
         /* Skills Section Styles */
         .skills {
             padding: 6rem 2rem;
@@ -810,26 +1009,33 @@
             <div class="shape"></div>
             <div class="shape"></div>
           </div>
-          <img
-            src="IMG_20220721_082132-removebg-preview.png"
-            alt="Developer"
-            class="developer-image"
-          />
+          <main class="about-container">
+            <div class="image-trigger">
+                <div class="pulse-ring"></div>
+                <img src="IMG_20220721_082132-removebg-preview.png" alt="Profile Image">
+            </div>
+        
+            <div class="content-overlay">
+                <button class="close-button">&times;</button>
+                <div class="about-content">
+                    <h2>Web Developer & Information System student</h2>
+                    
+                    <div class="text-reveal" style="transition-delay: 0.1s;">
+                        <p>Hello! I'm <span class="highlight-text">AL FANGKY</span>, a beginner developer, i'm information system student at the University of Muhammadiyah Gresik.</p>
+                    </div>
+        
+                    <div class="interest-tags">
+                        <span class="tag" style="transition-delay: 0.4s;">Creative Coding</span>
+                        <span class="tag" style="transition-delay: 0.45s;">UI/UX</span>
+                        <span class="tag" style="transition-delay: 0.5s;">Interactive Design</span>
+                    </div>
+                </div>
+            </div>
+        </main>
         </div>
       </section>
 
    <!-- About Section -->
-   <section class="about" id="about">
-    <div class="about-content">
-        <div class="about-image">
-            <img src="IMG_20220714_100330.jpg" alt="About me">
-        </div>
-        <div class="about-text">
-            <h2 class="section-title">About Me</h2>
-            <p>Hello, my name is Muhammad Insan Kamil Al Fangky, I am still a beginner, I am an Information Systems student at the University of Muhammadiyah Gresik.</p>
-        </div>
-    </div>
-</section>
 
     <!-- Skills Section -->
     <section class="skills" id="skills">
@@ -911,6 +1117,69 @@
     </footer>
 
     <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    const imageTrigger = document.querySelector('.image-trigger');
+    const contentOverlay = document.querySelector('.content-overlay');
+    const closeButton = document.querySelector('.close-button');
+
+    // Open overlay
+    imageTrigger.addEventListener('click', () => {
+        contentOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+
+    // Close overlay
+    closeButton.addEventListener('click', () => {
+        contentOverlay.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            contentOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Prevent click propagation
+    document.querySelector('.about-content').addEventListener('click', (e) => {
+        e.stopPropagation();
+    });
+
+    // Close on overlay click
+    contentOverlay.addEventListener('click', (e) => {
+        if (e.target === contentOverlay) {
+            contentOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Hover effect for image
+    let isHovering = false;
+    imageTrigger.addEventListener('mousemove', (e) => {
+        if (!isHovering) return;
+        const bounds = imageTrigger.getBoundingClientRect();
+        const x = e.clientX - bounds.left;
+        const y = e.clientY - bounds.top;
+        const centerX = bounds.width / 2;
+        const centerY = bounds.height / 2;
+        
+        const angleX = (y - centerY) / 30;
+        const angleY = (centerX - x) / 30;
+        
+        imageTrigger.style.transform = `perspective(1000px) rotateX(${angleX}deg) rotateY(${angleY}deg) scale(1.05)`;
+    });
+
+    imageTrigger.addEventListener('mouseenter', () => {
+        isHovering = true;
+    });
+
+    imageTrigger.addEventListener('mouseleave', () => {
+        isHovering = false;
+        imageTrigger.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+    });
+});
       function toggleTheme() {
         const body = document.body;
         if (body.getAttribute("data-theme") === "dark") {
