@@ -205,24 +205,68 @@
       }
 
  
-      .about-me {
-        display: grid;
+    /* About Section Styles */
+    .about {
+      display: grid;
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
         padding: 2rem 0;
-      }
+        }
 
-      .about-card {
-        background-color: var(--card-bg);
-        border-radius: 10px;
-        padding: 1.5rem;
-        transform: translateY(0);
-        transition: transform 0.3s ease;
-      }
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
 
-      .about-card:hover {
-        transform: translateY(-5px);
-      }
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        /* Skills Section Styles */
+        .skills {
+            padding: 6rem 2rem;
+            background: var(--bg-color)
+        }
+
+        .skills-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .skill-card {
+            background: var(--nav-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: #4ecdc4;
+        }
 
       .projects {
         display: grid;
@@ -774,11 +818,44 @@
         </div>
       </section>
 
-      <section class="about-me" id="about-me">
-        <div class="about-card">
-        <p>Hello, my name is Muhammad Insan Kamil Al Fangky, I am still a beginner, I am an Information Systems student at the University of Muhammadiyah Gresik.</p>
+   <!-- About Section -->
+   <section class="about" id="about">
+    <div class="about-content">
+        <div class="about-image">
+            <img src="IMG_20220714_100330.jpg" alt="About me">
         </div>
-      </section>
+        <div class="about-text">
+            <h2 class="section-title">About Me</h2>
+            <p>Hello, my name is Muhammad Insan Kamil Al Fangky, I am still a beginner, I am an Information Systems student at the University of Muhammadiyah Gresik.</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+      <div class="skills-content">
+          <h2 class="section-title">My Skills</h2>
+          <p class="section-subtitle">Technologies I work with</p>
+          <div class="skills-grid">
+              <div class="skill-card">
+                  <i class="fab fa-html5 skill-icon"></i>
+                  <h3>HTML</h3>
+              </div>
+              <div class="skill-card">
+                  <i class="fab fa-css3-alt skill-icon"></i>
+                  <h3>CSS</h3>
+              </div>
+              <div class="skill-card">
+                  <i class="fab fa-js skill-icon"></i>
+                  <h3>JavaScript</h3>
+              </div>
+              <div class="skill-card">
+                  <i class="fab fa-react skill-icon"></i>
+                  <h3>React</h3>
+              </div>
+          </div>
+      </div>
+  </section>
 
       <section class="projects" id="projects">
         <div class="project-card">
@@ -808,11 +885,8 @@
     <footer class="footer" id="contact">
       <div class="footer-content">
         <div class="footer-info">
-          <h3>AL FANGKY</h3>
-          <p>
-            Crafting digital experiences that inspire and innovate. Join us on
-            our journey to create something amazing.
-          </p>
+          <h3>Follow my social media</h3>
+          <p>Click below</p>
           <div class="social-links">
             <a href="#" class="social-icon facebook" aria-label="Facebook">
               <i class="fab fa-facebook-f"></i>
@@ -828,11 +902,6 @@
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
-        </div>
-
-        <div class="contact-info">
-          <h3>Contact me</h3>
-          <p><i class="fas fa-envelope"></i> alfangkydev@gmail.com</p>
         </div>
       </div>
 
