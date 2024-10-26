@@ -977,7 +977,7 @@
         <div class="hero-content">
           <h1 class="glitch">Hi, I'm al fangky</h1>
           <p class="typing-text typing">
-            Web Developer & Information System Student
+            Welcome to my portfolio!
           </p>
         </div>
         <div class="hero-image">
@@ -998,7 +998,7 @@
                     <h2>Web Developer & Information System student</h2>
                     
                     <div class="text-reveal" style="transition-delay: 0.1s;">
-                        <p>Hello! I'm <span class="highlight-text">AL FANGKY</span>, a beginner developer, i'm information system student at the University of Muhammadiyah Gresik.</p>
+                        <p>Hello! I'm <span class="highlight-text">AL FANGKY</span>, a beginner developer, I'm information system student at the University of Muhammadiyah Gresik.</p>
                     </div>
         
                     <div class="interest-tags">
@@ -1094,6 +1094,7 @@
     </footer>
 
     <script>
+      
       document.addEventListener('DOMContentLoaded', () => {
     const imageTrigger = document.querySelector('.image-trigger');
     const contentOverlay = document.querySelector('.content-overlay');
@@ -1194,25 +1195,6 @@
         }
       });
 
-      // Animate projects on scroll
-      const observerOptions = {
-        threshold: 0.2,
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = "1";
-            entry.target.style.transform = "translateY(0)";
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll(".project-card").forEach((card) => {
-        card.style.opacity = "0";
-        card.style.transform = "translateY(20px)";
-        observer.observe(card);
-      });
       // Interactive Gradient Text
       const gradientText = document.querySelector(".gradient-text");
       gradientText.addEventListener("mousemove", (e) => {
