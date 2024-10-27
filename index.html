@@ -1030,15 +1030,27 @@
       }
 
       /* Footer bottom */
+      /* info section */
       .footer-bottom {
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: center;
-        font-size: 14px;
-        opacity: 0.8;
-        margin-bottom: auto;
-        padding-bottom: auto;
+        font-size: 50px;
+        margin-bottom: px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .footer-bottom::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #45b7d1;
+        transition: width 0.3s ease;
+      }
+
+      .footer-bottom:hover::after {
+        width: 100%;
       }
 
       /* Responsive design */
@@ -1561,17 +1573,17 @@
         <!-- Three copies for smoother infinite loop -->
         <div class="text-group">
             <div class="text-item">creative</div>
-            <div class="text-item">Web Development</div>
+            <div class="text-item">Development</div>
             <div class="text-item">UI/UX</div>
         </div>
         <div class="text-group">
             <div class="text-item">creative</div>
-            <div class="text-item">Web Development</div>
+            <div class="text-item">Development</div>
             <div class="text-item">UI/UX</div>
         </div>
         <div class="text-group">
             <div class="text-item">creative</div>
-            <div class="text-item">Wweb Development</div>
+            <div class="text-item">Development</div>
             <div class="text-item">UI/UX</div>
         </div>
     </div>
@@ -1598,13 +1610,14 @@
             </a>
           </div>
         </div>
+        <p>&copy; 2024 AL FANGKY. All rights reserved.</p>
       </div>
 
       <div class="footer-bottom">
-        <p>&copy; 2024 AL FANGKY. All rights reserved.</p>
       </div>
     </footer>
-
+<p>halloooo</p>
+<p>hallooo</p>
     <script>
       
       function openModal(imageSrc) {
