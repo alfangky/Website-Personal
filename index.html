@@ -8,17 +8,17 @@
       
          :root {
             --primary: #2563eb;
-            --bg: #ffffff;
+            --bg: #eeebeb;
             --text: #27272a;
-            --nav-bg: rgba(255, 255, 255, 0.95);
-            --hover: #3b82f6;
+            --nav-bg: rgb(241, 239, 239);
+            --hover: #004fcf;
         }
 
         [data-theme="dark"] {
             --primary: #60a5fa;
-            --bg: #18181b;
+            --bg: #18181a;
             --text: #fafafa;
-            --nav-bg: rgba(24, 24, 27, 0.95);
+            --nav-bg: #151516;
             --hover: #93c5fd;
         }
 
@@ -522,7 +522,8 @@
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
-            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .skill-card:hover {
@@ -543,11 +544,12 @@
       }
 
       .project-card {
-        background-color: var(--card-bg);
+        background-color: var(--nav-bg);
         border-radius: 10px;
         padding: 1.5rem;
         transform: translateY(0);
-        transition: transform 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
 
       .project-card:hover {
@@ -566,7 +568,6 @@
         margin-bottom: 0.5rem;
       }
       .certificates-section {
-            background: var(--nav-bg);
             padding: 80px 20px;
             font-family: 'Inter', sans-serif;
         }
@@ -644,22 +645,6 @@
         .certificate-date {
             font-size: 0.85rem;
             color: #888;
-        }
-
-        .view-certificate {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 8px 20px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.9rem;
-            transition: background 0.3s ease;
-        }
-
-        .view-certificate:hover {
-            background: #0056b3;
         }
 
         /* Modal styles */
@@ -1186,6 +1171,216 @@
           font-size: clamp(1.2rem, 3vw, 1.5rem);
         }
       }
+
+        .slider-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            background: var(--nav-bg);
+            padding: 15px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 -2px 20px rgba(0,0,0,0.08);
+            z-index: 1000;
+        }
+
+        .sliding-text {
+            display: flex;
+            width: fit-content;
+            animation: slide 20s linear infinite;
+        }
+
+        .slider-wrapper:hover .sliding-text {
+            animation-play-state: paused;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.33%); }
+        }
+
+        .text-item {
+    display: inline-flex;
+    margin: 0 100px; /* Increased horizontal margin for more spacing */
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    position: relative;
+    padding: 8px 24px; /* Increased padding for better spacing */
+    flex-shrink: 0;
+    border: 1px solid; /* Maintain border */
+    border-radius: 100px;
+    background: var(--nav-bg);
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: none; /* Keep box shadow off for clarity */
+}
+
+.slider-wrapper {
+    padding: 5px 0; /* Maintain padding for the wrapper */
+}
+
+.sliding-text {
+    display: flex;
+    animation: slide 20s linear infinite;
+    gap: 30px; /* Increased gap for more separation */
+}
+
+.text-group {
+    display: flex;
+    align-items: center;
+}
+
+        /* Individual colors for each item */
+        .text-item:nth-child(6n+1) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(255, 107, 107, 0.2),
+                       -2px -2px 0 rgba(255, 107, 107, 0.1);
+        }
+        .text-item:nth-child(6n+2) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(78, 205, 196, 0.2),
+                       -2px -2px 0 rgba(78, 205, 196, 0.1);
+        }
+        .text-item:nth-child(6n+3) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(69, 183, 209, 0.2),
+                       -2px -2px 0 rgba(69, 183, 209, 0.1);
+        }
+        .text-item:nth-child(6n+4) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(150, 201, 61, 0.2),
+                       -2px -2px 0 rgba(150, 201, 61, 0.1);
+        }
+        .text-item:nth-child(6n+5) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(155, 89, 182, 0.2),
+                       -2px -2px 0 rgba(155, 89, 182, 0.1);
+        }
+        .text-item:nth-child(6n) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(243, 156, 18, 0.2),
+                       -2px -2px 0 rgba(243, 156, 18, 0.1);
+        }
+
+        /* Hover effects for each color */
+        .text-item:nth-child(6n+1):hover { background: #FF6B6B; }
+        .text-item:nth-child(6n+2):hover { background: #4ECDC4; }
+        .text-item:nth-child(6n+3):hover { background: #45B7D1; }
+        .text-item:nth-child(6n+4):hover { background: #96C93D; }
+        .text-item:nth-child(6n+5):hover { background: #9B59B6; }
+        .text-item:nth-child(6n):hover { background: #F39C12; }
+
+        .text-item:hover {
+            transform: translateY(-2px);
+            color: white;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1),
+                       -3px -3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .text-group {
+            display: flex;
+            align-items: center;
+        }
+
+        
+        .slider-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            background: var(--nav-bg);
+            padding: 10px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            box-shadow: 0 -2px 20px rgba(0,0,0,0.08);
+            z-index: 1000;
+        }
+
+        .sliding-text {
+            display: flex;
+            width: fit-content;
+            animation: slide 20s linear infinite;
+        }
+
+        .slider-wrapper:hover .sliding-text {
+            animation-play-state: paused;
+        }
+
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.33%); }
+        }
+
+        .text-item {
+            display: inline-flex;
+            margin-right: 30px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+
+            position: relative;
+            padding: 10px 12px;
+            flex-shrink: 0;
+            border: 0px solid;
+            border-radius: 100px;
+            background: var(--nav-bg);
+            letter-spacing: 0.3px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+        }
+
+        /* Individual colors for each item */
+        .text-item:nth-child(6n+1) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(255, 107, 107, 0.2),
+                       -2px -2px 0 rgba(255, 107, 107, 0.1);
+        }
+        .text-item:nth-child(6n+2) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(78, 205, 196, 0.2),
+                       -2px -2px 0 rgba(78, 205, 196, 0.1);
+        }
+        .text-item:nth-child(6n+3) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(69, 183, 209, 0.2),
+                       -2px -2px 0 rgba(69, 183, 209, 0.1);
+        }
+        .text-item:nth-child(6n+4) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(150, 201, 61, 0.2),
+                       -2px -2px 0 rgba(150, 201, 61, 0.1);
+        }
+        .text-item:nth-child(6n+5) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(155, 89, 182, 0.2),
+                       -2px -2px 0 rgba(155, 89, 182, 0.1);
+        }
+        .text-item:nth-child(6n) {
+            border-color: #000000;
+            box-shadow: 2px 2px 0 rgba(243, 156, 18, 0.2),
+                       -2px -2px 0 rgba(243, 156, 18, 0.1);
+        }
+
+        /* Hover effects for each color */
+        .text-item:nth-child(6n+1):hover { background: #FF6B6B; }
+        .text-item:nth-child(6n+2):hover { background: #4ECDC4; }
+        .text-item:nth-child(6n+3):hover { background: #45B7D1; }
+        .text-item:nth-child(6n+4):hover { background: #96C93D; }
+        .text-item:nth-child(6n+5):hover { background: #9B59B6; }
+        .text-item:nth-child(6n):hover { background: #F39C12; }
+
+        .text-item:hover {
+            transform: translateY(-2px);
+            color: white;
+            box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.1),
+                       -3px -3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .text-group {
+            display: flex;
+            align-items: center;
+        }
     </style>
   </head>
   <body>
@@ -1264,7 +1459,7 @@
     <!-- Skills Section -->
     <section class="skills" id="skills">
       <div class="skills-content">
-          <h2 class="section-titlez">My Skills</h2>
+          <h2 class="section-titlex">My Skills</h2>
           <div class="skills-grid">
               <div class="skill-card">
                   <i class="fab fa-html5 skill-icon"></i>
@@ -1360,6 +1555,27 @@
           <img id="modalImage" src="" alt="Certificate Preview">
       </div>
   </div>
+
+  <div class="slider-wrapper">
+    <div class="sliding-text">
+        <!-- Three copies for smoother infinite loop -->
+        <div class="text-group">
+            <div class="text-item">creative</div>
+            <div class="text-item">Web Development</div>
+            <div class="text-item">UI/UX</div>
+        </div>
+        <div class="text-group">
+            <div class="text-item">creative</div>
+            <div class="text-item">Web Development</div>
+            <div class="text-item">UI/UX</div>
+        </div>
+        <div class="text-group">
+            <div class="text-item">creative</div>
+            <div class="text-item">Wweb Development</div>
+            <div class="text-item">UI/UX</div>
+        </div>
+    </div>
+</div>
 
     <footer class="footer" id="contact">
       <div class="footer-content">
