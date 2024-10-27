@@ -1030,27 +1030,15 @@
       }
 
       /* Footer bottom */
-      /* info section */
       .footer-bottom {
-        font-size: 50px;
-        margin-bottom: px;
-        position: relative;
-        display: inline-block;
-      }
-
-      .footer-bottom::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: #45b7d1;
-        transition: width 0.3s ease;
-      }
-
-      .footer-bottom:hover::after {
-        width: 100%;
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: center;
+        font-size: 14px;
+        opacity: 0.8;
+        margin-bottom: auto;
+        padding-bottom: auto;
       }
 
       /* Responsive design */
@@ -1194,7 +1182,6 @@
             padding: 15px 0;
             border-top: 1px solid rgba(0,0,0,0.05);
             box-shadow: 0 -2px 20px rgba(0,0,0,0.08);
-            z-index: 1000;
         }
 
         .sliding-text {
@@ -1296,19 +1283,6 @@
             align-items: center;
         }
 
-        
-        .slider-wrapper {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            overflow: hidden;
-            background: var(--nav-bg);
-            padding: 10px 0;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            box-shadow: 0 -2px 20px rgba(0,0,0,0.08);
-            z-index: 1000;
-        }
 
         .sliding-text {
             display: flex;
@@ -1334,7 +1308,7 @@
             position: relative;
             padding: 10px 12px;
             flex-shrink: 0;
-            border: 0px solid;
+            border:0px solid;
             border-radius: 100px;
             background: var(--nav-bg);
             letter-spacing: 0.3px;
@@ -1610,14 +1584,13 @@
             </a>
           </div>
         </div>
-        <p>&copy; 2024 AL FANGKY. All rights reserved.</p>
       </div>
 
       <div class="footer-bottom">
+        <p>&copy; 2024 AL FANGKY. All rights reserved.</p>
       </div>
     </footer>
-<p>halloooo</p>
-<p>hallooo</p>
+
     <script>
       
       function openModal(imageSrc) {
