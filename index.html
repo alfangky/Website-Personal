@@ -5,108 +5,197 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AL FANGKY Portfolio</title>
     <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        transition: all 0.3s ease;
-      }
+      
+         :root {
+            --primary: #2563eb;
+            --bg: #ffffff;
+            --text: #27272a;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+            --hover: #3b82f6;
+        }
 
-      :root {
-        --primary-color: #232325;
-        --bg-color: #ffffff;
-        --text-color: #333333;
-        --nav-bg: #f8f9fa;
-        --card-bg: #ffffff;
-        --shadow: rgba(0, 0, 0, 0.1);
-      }
+        [data-theme="dark"] {
+            --primary: #60a5fa;
+            --bg: #18181b;
+            --text: #fafafa;
+            --nav-bg: rgba(24, 24, 27, 0.95);
+            --hover: #93c5fd;
+        }
 
-      [data-theme="dark"] {
-        --bg-color: #1a1a1a;
-        --text-color: #ffffff;
-        --nav-bg: #2d2d2d;
-        --card-bg: #2d2d2d;
-        --shadow: rgba(255, 255, 255, 0.1);
-      }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
 
-      body {
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        background-color: var(--bg-color);
-        color: var(--text-color);
-      }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            min-height: 200vh;
+        }
 
-      /* Navbar Styles */
-      nav {
-        background-color: var(--nav-bg);
-        padding: 1rem;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-      }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 2rem;
+            background: var(--nav-bg);
+            backdrop-filter: blur(8px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
 
-      .nav-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
 
-      .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(#f8f9fa);
-      }
+        .logo span {
+            color: var(--primary);
+        }
 
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-      }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
 
-      .nav-links a {
-        color: var(--text-color);
-        text-decoration: none;
-        font-weight: 500;
-      }
+        .nav-link {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+        }
 
-      .theme-toggle {
-        background: none;
-        border: none;
-        color: var(--text-color);
-        cursor: pointer;
-        font-size: 1.2rem;
-        padding: 0.5rem;
-      }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
 
-      /* Burger Menu Styles */
-      .burger-menu {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        cursor: pointer;
-        padding: 5px;
-      }
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
 
-      .burger-line {
-        width: 25px;
-        height: 3px;
-        background-color: var(--text-color);
-        transition: all 0.3s ease;
-      }
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-      .burger-menu.active .burger-line:nth-child(1) {
-        transform: rotate(45deg) translate(5px, 5px);
-      }
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text);
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+        }
 
-      .burger-menu.active .burger-line:nth-child(2) {
-        opacity: 0;
-      }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            background: rgba(0, 0, 0, 0.05);
+        }
 
-      .burger-menu.active .burger-line:nth-child(3) {
-        transform: rotate(-45deg) translate(5px, -5px);
-      }
+        [data-theme="dark"] .theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
 
+        .menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 100;
+        }
+
+        .menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text);
+            margin: 6px 0;
+            transition: 0.4s;
+        }
+
+        .progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1001;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                background: var(--nav-bg);
+                backdrop-filter: blur(8px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: 0.4s ease;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-link {
+                font-size: 1.25rem;
+            }
+
+            .menu-btn.active span:nth-child(1) {
+                transform: rotate(45deg) translate(7px, 7px);
+            }
+
+            .menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .menu-btn.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
       /* Main Content Styles */
       main {
         max-width: 1200px;
@@ -313,7 +402,9 @@
     margin-bottom: 1.5rem;
     background: linear-gradient(45deg, #00ff87, #60efff);
     -webkit-background-clip: text;
+    background-clip: text; /* Added for better compatibility */
     color: transparent;
+    text-align: center; /* Optional: Center text if needed */
 }
 
 .text-reveal {
@@ -474,6 +565,153 @@
       .project-card h3 {
         margin-bottom: 0.5rem;
       }
+      .certificates-section {
+            background: var(--nav-bg);
+            padding: 80px 20px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--bg-color);
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            color: var(--bg-color);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .certificate-card {
+            background: var(--nav-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .certificate-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+
+        .certificate-content {
+            padding: 25px;
+        }
+
+        .certificate-title {
+            font-size: 1.2rem;
+            color: var(--bg-color);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .certificate-issuer {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .certificate-date {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .view-certificate {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            transition: background 0.3s ease;
+        }
+
+        .view-certificate:hover {
+            background: #0056b3;
+        }
+
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .modal-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .section-titlez {
+                font-size: 2rem;
+                
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+
+            .certificate-card {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
 
       /* Footer Styles */
       footer {
@@ -951,26 +1189,35 @@
     </style>
   </head>
   <body>
-    <nav>
-      <div class="nav-content">
-        <div class="logo">
-          <p>AL FANGKY</p>
-        </div>
-        <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <div class="nav-controls">
-          <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
-          <div class="burger-menu" onclick="toggleMenu()">
-            <div class="burger-line"></div>
-            <div class="burger-line"></div>
-            <div class="burger-line"></div>
-          </div>
-        </div>
+    <div class="progress">
+      <div class="progress-bar"></div>
+  </div>
+  
+  <nav class="navbar">
+      <a href="#" class="logo">AL<span>FANGKY</span></a>
+      
+      <ul class="nav-links">
+          <li><a href="#home" class="nav-link active">Home</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#work" class="nav-link">Work</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      
+      <div class="nav-controls">
+          <button class="theme-toggle">
+              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="5"/>
+                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+              </svg>
+          </button>
+          
+          <button class="menu-btn">
+              <span></span>
+              <span></span>
+              <span></span>
+          </button>
       </div>
-    </nav>
+  </nav>
 
     <main>
       <section class="hero" id="home">
@@ -1017,8 +1264,8 @@
     <!-- Skills Section -->
     <section class="skills" id="skills">
       <div class="skills-content">
-          <h2 class="section-title">My Skills</h2>
-          <p class="section-subtitle">Technologies I work with</p>
+          <h2 class="section-titlez">My Skills</h2>
+          <p class="">Technologies I work with</p>
           <div class="skills-grid">
               <div class="skill-card">
                   <i class="fab fa-html5 skill-icon"></i>
@@ -1065,6 +1312,56 @@
       </section>
     </main>
 
+    <section class="certificates-section">
+      <div class="section-container">
+          <div class="section-header">
+              <h2 class="section-title">My Certificates</h2>
+              <p class="section-subtitle">A collection of professional certifications and achievements that demonstrate my expertise and commitment to continuous learning.</p>
+          </div>
+
+          <div class="certificates-grid">
+              <!-- Certificate 1 -->
+              <div class="certificate-card" onclick="openModal('Screenshot_20240910-133624_Facebook.jpg')">
+                  <img src="Screenshot_20240910-133624_Facebook.jpg" alt="Web Development Certificate" class="certificate-image">
+                  <div class="certificate-content">
+                      <h3 class="certificate-title">Full Stack Web Development</h3>
+                      <p class="certificate-issuer">IMPHEN</p>
+                      <span class="certificate-date">Issued: January 2024</span>
+
+                  </div>
+              </div>
+
+              <!-- Certificate 2 -->
+              <div class="certificate-card" onclick="openModal('Screenshot_20240910-133624_Facebook.jpg')">
+                  <img src="Screenshot_20240910-133624_Facebook.jpg" alt="UI/UX Design Certificate" class="certificate-image">
+                  <div class="certificate-content">
+                      <h3 class="certificate-title">UI/UX Design Fundamentals</h3>
+                      <p class="certificate-issuer">IMPHEN</p>
+                      <span class="certificate-date">Issued: March 2024</span>
+                  </div>
+              </div>
+
+              <!-- Certificate 3 -->
+              <div class="certificate-card" onclick="openModal('Screenshot_20240910-133624_Facebook.jpg')">
+                  <img src="Screenshot_20240910-133624_Facebook.jpg" alt="Data Science Certificate" class="certificate-image">
+                  <div class="certificate-content">
+                      <h3 class="certificate-title">Data Science Specialization</h3>
+                      <p class="certificate-issuer">IMPHEN</p>
+                      <span class="certificate-date">Issued: February 2024</span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Modal for certificate preview -->
+  <div class="modal" id="certificateModal">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <div class="modal-content">
+          <img id="modalImage" src="" alt="Certificate Preview">
+      </div>
+  </div>
+
     <footer class="footer" id="contact">
       <div class="footer-content">
         <div class="footer-info">
@@ -1095,6 +1392,32 @@
 
     <script>
       
+      function openModal(imageSrc) {
+            const modal = document.getElementById('certificateModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = 'flex';
+            modalImg.src = imageSrc;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('certificateModal');
+            modal.style.display = 'none';
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('certificateModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Prevent certificate link click from triggering modal
+        document.querySelectorAll('.view-certificate').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        });
+
       document.addEventListener('DOMContentLoaded', () => {
     const imageTrigger = document.querySelector('.image-trigger');
     const contentOverlay = document.querySelector('.content-overlay');
@@ -1158,43 +1481,67 @@
         imageTrigger.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
     });
 });
-      function toggleTheme() {
-        const body = document.body;
-        if (body.getAttribute("data-theme") === "dark") {
-          body.removeAttribute("data-theme");
-          localStorage.setItem("theme", "light");
-        } else {
-          body.setAttribute("data-theme", "dark");
-          localStorage.setItem("theme", "dark");
+const navbar = document.querySelector('.navbar');
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const themeToggle = document.querySelector('.theme-toggle');
+        const progressBar = document.querySelector('.progress-bar');
+        const links = document.querySelectorAll('.nav-link');
+
+        // Theme Toggle
+        const theme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', theme);
+
+        function updateThemeIcon() {
+            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            themeToggle.innerHTML = isDark ? 
+                '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>' :
+                '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
         }
-      }
+        
+        updateThemeIcon();
 
-      function toggleMenu() {
-        const navLinks = document.querySelector(".nav-links");
-        const burgerMenu = document.querySelector(".burger-menu");
-        navLinks.classList.toggle("active");
-        burgerMenu.classList.toggle("active");
-      }
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon();
+        });
 
-      // Check for saved theme preference
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        document.body.setAttribute("data-theme", "dark");
-      }
+        // Mobile Menu
+        menuBtn.addEventListener('click', () => {
+            menuBtn.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
 
-      // Close menu when clicking outside
-      document.addEventListener("click", (e) => {
-        const navLinks = document.querySelector(".nav-links");
-        const burgerMenu = document.querySelector(".burger-menu");
-        if (
-          !e.target.closest(".burger-menu") &&
-          !e.target.closest(".nav-links")
-        ) {
-          navLinks.classList.remove("active");
-          burgerMenu.classList.remove("active");
-        }
-      });
+        // Scroll Progress
+        window.addEventListener('scroll', () => {
+            const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            progressBar.style.width = `${scrolled}%`;
+        });
 
+        // Active Link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                links.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                
+                if(window.innerWidth <= 768) {
+                    menuBtn.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+                menuBtn.classList.remove('active');
+                navLinks.classList.remove('active');
+            }
+        });
       // Interactive Gradient Text
       const gradientText = document.querySelector(".gradient-text");
       gradientText.addEventListener("mousemove", (e) => {
