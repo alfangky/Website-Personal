@@ -13,6 +13,14 @@
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
+      background: #1f2b44;
+      position: auto;
+      background: rgb(27, 27, 27);
+      border-radius: 50%;
+
+      cursor: pointer;
+    }
+
     }
 
     .hero {
@@ -334,196 +342,7 @@
         right: 20px;
       }
     }
-         :root {
-            --primary: #2563eb;
-            --bg: #eeebeb;
-            --text: #27272a;
-            --nav-bg: rgb(241, 239, 239);
-            --hover: #004fcf;
-        }
-
-        [data-theme="dark"] {
-            --primary: #60a5fa;
-            --bg: #18181a;
-            --text: #fafafa;
-            --nav-bg: #151516;
-            --hover: #93c5fd;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            transition: all 0.3s ease;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            min-height: 200vh;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.25rem 2rem;
-            background: var(--nav-bg);
-            backdrop-filter: blur(8px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
-
-        .nav-link {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1rem;
-            position: relative;
-            padding: 0.5rem 0;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after {
-            width: 100%;
-        }
-
-        .nav-controls {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .theme-toggle {
-            background: none;
-            border: none;
-            color: var(--text);
-            cursor: pointer;
-            padding: 0.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-            transition: transform 0.2s ease;
-        }
-
-        .theme-toggle:hover {
-            transform: scale(1.1);
-            background: rgba(0, 0, 0, 0.05);
-        }
-
-        [data-theme="dark"] .theme-toggle:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0.5rem;
-            z-index: 100;
-        }
-
-        .menu-btn span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: var(--text);
-            margin: 6px 0;
-            transition: 0.4s;
-        }
-
-        .progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: rgba(0, 0, 0, 0.1);
-            z-index: 1001;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0;
-            background: var(--primary);
-        }
-
-        @media (max-width: 768px) {
-            .menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 100%;
-                background: var(--nav-bg);
-                backdrop-filter: blur(8px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                transition: 0.4s ease;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-link {
-                font-size: 1.25rem;
-            }
-
-            .menu-btn.active span:nth-child(1) {
-                transform: rotate(45deg) translate(7px, 7px);
-            }
-
-            .menu-btn.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .menu-btn.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(7px, -7px);
-            }
-        }
+ 
       /* Main Content Styles */
       main {
         max-width: 1200px;
@@ -627,12 +446,13 @@
         /* Skills Section Styles */
         .skills {
             padding: 6rem 2rem;
-            background: var(--bg-color)
+            background: var(--bg-color);
         }
 
         .skills-content {
             max-width: 1200px;
             margin: 0 auto;
+            color: whitesmoke;
         }
 
         .skills-grid {
@@ -643,7 +463,7 @@
         }
 
         .skill-card {
-            background: var(--nav-bg);
+          background: #26334e;
             padding: 1.5rem;
             border-radius: 10px;
             text-align: center;
@@ -666,10 +486,11 @@
         grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 2rem;
         padding: 2rem 0;
+        color: whitesmoke;
       }
 
       .project-card {
-        background-color: var(--nav-bg);
+        background: #26334e;
         border-radius: 10px;
         padding: 1.5rem;
         transform: translateY(0);
@@ -709,13 +530,13 @@
 
         .section-title {
             font-size: 2.5rem;
-            color: var(--bg-color);
+            color: whitesmoke;
             margin-bottom: 20px;
             font-weight: 700;
         }
 
         .section-subtitle {
-            color: var(--bg-color);
+            color: whitesmoke;
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
@@ -730,7 +551,7 @@
         }
 
         .certificate-card {
-            background: var(--nav-bg);
+          background: #26334e;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
@@ -756,20 +577,20 @@
 
         .certificate-title {
             font-size: 1.2rem;
-            color: var(--bg-color);
+            color: whitesmoke;
             margin-bottom: 10px;
             font-weight: 600;
         }
 
         .certificate-issuer {
-            color: #666;
+            color: whitesmoke;
             font-size: 0.9rem;
             margin-bottom: 15px;
         }
 
         .certificate-date {
             font-size: 0.85rem;
-            color: #888;
+            color: whitesmoke;
         }
 
         /* Modal styles */
@@ -1290,10 +1111,11 @@
             left: 0;
             width: 100%;
             overflow: hidden;
-            background: var(--nav-bg);
+            background: #26334e;
             padding: 15px 0;
             border-top: 1px solid rgba(0,0,0,0.05);
             box-shadow: 0 -2px 20px rgba(0,0,0,0.08);
+            color: whitesmoke;
         }
 
         .sliding-text {
@@ -1539,6 +1361,7 @@
     opacity: 0;
     transform: translateY(20px);
     animation: fadeIn 0.8s forwards;
+    color: whitesmoke;
   }
 
   .bio-cards-container {
@@ -1549,7 +1372,8 @@
   }
 
   .bio-card {
-    background: var(--nav-bg);
+    color: whitesmoke;
+    background: #26334e;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -1623,6 +1447,8 @@
     margin-top: 20px;
     cursor: pointer;
     overflow: hidden;
+    background: #26334e;
+    color: whitesmoke;
   }
 
   .fun-fact::before {
@@ -1660,7 +1486,7 @@
 
   .interest-tag {
     padding: 8px 15px;
-    background: var(--nav-bg);
+    background: #26334e;
     border-radius: 20px;
     font-size: 0.9em;
     cursor: pointer;
@@ -1668,7 +1494,7 @@
   }
 
   .interest-tag:hover {
-    background: var(--primary-color);
+    background: #26334e;
     color: white;
     transform: scale(1.1);
   }
@@ -1682,6 +1508,7 @@
   .animate-pulse {
     animation: pulse 2s infinite;
   }
+  
     </style>
   </head>
   <body>
@@ -1689,31 +1516,6 @@
       <div class="progress-bar"></div>
   </div>
   
-  <nav class="navbar">
-      <a href="#" class="logo">AL<span>FANGKY</span></a>
-      
-      <ul class="nav-links">
-          <li><a href="#home" class="nav-link active">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#work" class="nav-link">Work</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-      </ul>
-      
-      <div class="nav-controls">
-          <button class="theme-toggle">
-              <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="5"/>
-                  <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-              </svg>
-          </button>
-          
-          <button class="menu-btn">
-              <span></span>
-              <span></span>
-              <span></span>
-          </button>
-      </div>
-  </nav>
 
   <div class="hero">
     <div class="content">
@@ -1816,24 +1618,6 @@
         <span class="interest-tag">Reading</span>
         <span class="interest-tag">Learning</span>
       </div>
-    </div>
-  </div>
-
-  <div class="bio-cards-container">
-    <div class="bio-card">
-      <div class="hobby-icon">🌎</div>
-      <h3>My Journey</h3>
-      <p>.</p>
-    </div>
-    <div class="bio-card">
-      <div class="hobby-icon">🎯</div>
-      <h3>Mission</h3>
-      <p>.</p>
-    </div>
-    <div class="bio-card">
-      <div class="hobby-icon">🎨</div>
-      <h3>Hobbies</h3>
-      <p>.</p>
     </div>
   </div>
 
@@ -2277,67 +2061,6 @@
         imageTrigger.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
     });
 });
-const navbar = document.querySelector('.navbar');
-        const menuBtn = document.querySelector('.menu-btn');
-        const navLinks = document.querySelector('.nav-links');
-        const themeToggle = document.querySelector('.theme-toggle');
-        const progressBar = document.querySelector('.progress-bar');
-        const links = document.querySelectorAll('.nav-link');
-
-        // Theme Toggle
-        const theme = localStorage.getItem('theme') || 'light';
-        document.documentElement.setAttribute('data-theme', theme);
-
-        function updateThemeIcon() {
-            const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-            themeToggle.innerHTML = isDark ? 
-                '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>' :
-                '<svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>';
-        }
-        
-        updateThemeIcon();
-
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateThemeIcon();
-        });
-
-        // Mobile Menu
-        menuBtn.addEventListener('click', () => {
-            menuBtn.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
-
-        // Scroll Progress
-        window.addEventListener('scroll', () => {
-            const windowHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
-            progressBar.style.width = `${scrolled}%`;
-        });
-
-        // Active Link
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                links.forEach(l => l.classList.remove('active'));
-                link.classList.add('active');
-                
-                if(window.innerWidth <= 768) {
-                    menuBtn.classList.remove('active');
-                    navLinks.classList.remove('active');
-                }
-            });
-        });
-
-        // Close menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
-                menuBtn.classList.remove('active');
-                navLinks.classList.remove('active');
-            }
-        });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   </body>
