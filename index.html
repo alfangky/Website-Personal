@@ -1479,6 +1479,209 @@
             display: flex;
             align-items: center;
         }
+        .about-container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .profile-section {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+
+  .profile-image-container {
+    position: relative;
+    width: 250px;
+    height: 250px;
+  }
+
+  .profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.5s;
+  }
+
+  .image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 0.9em;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .profile-image-container:hover .image-overlay {
+    opacity: 0.9;
+  }
+
+  .text-content {
+    flex: 1;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.8s forwards;
+  }
+
+  .bio-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 40px;
+  }
+
+  .bio-card {
+    background: var(--nav-bg);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(50px);
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .bio-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+
+  .bio-card.visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .bio-card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+  }
+
+  .hobby-icon {
+    font-size: 2em;
+    margin-bottom: 10px;
+  }
+
+  .highlight {
+    color: var(--primary-color);
+    font-weight: bold;
+  }
+
+  .floating-shapes div {
+    position: absolute;
+    pointer-events: none;
+    animation: float 15s infinite linear;
+    opacity: 0.1;
+    font-size: 2em;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.3s;
+  }
+
+  .social-link:hover {
+    transform: scale(1.2);
+  }
+
+  .fun-fact {
+    position: relative;
+    padding: 15px;
+    background: var(--nav-bg);
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+
+  .fun-fact::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 4px;
+    height: 100%;
+    background: var(--accent-color);
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(100px, -100px) rotate(360deg); }
+  }
+
+  .shape1 { top: 10%; left: 10%; }
+  .shape2 { top: 60%; right: 10%; animation-delay: -5s; }
+  .shape3 { bottom: 10%; left: 30%; animation-delay: -10s; }
+
+  .interests-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .interest-tag {
+    padding: 8px 15px;
+    background: var(--nav-bg);
+    border-radius: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+
+  .interest-tag:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.1);
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s infinite;
+  }
     </style>
   </head>
   <body>
@@ -1591,7 +1794,59 @@
   </div>
 
   </div>
+ 
+<div class="about-container">
+  <div class="floating-shapes">
+    <div class="shape1">⬡</div>
+    <div class="shape2">◆</div>
+    <div class="shape3">●</div>
+  </div>
 
+  <div class="profile-section">
+    <div class="profile-image-container">
+      <img src="IMG_20220721_082132-removebg-preview.png" alt="Profile Image" class="profile-image" id="profile-img">
+
+    </div>
+    <div class="text-content">
+      <h1><span class="highlight">About me</span></h1>
+      <p class="typing-text"></p>
+      <div class="interests-cloud">
+        <span class="interest-tag">Photography</span>
+        <span class="interest-tag">Workout</span>
+        <span class="interest-tag">Reading</span>
+        <span class="interest-tag">Learning</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bio-cards-container">
+    <div class="bio-card">
+      <div class="hobby-icon">🌎</div>
+      <h3>My Journey</h3>
+      <p>.</p>
+    </div>
+    <div class="bio-card">
+      <div class="hobby-icon">🎯</div>
+      <h3>Mission</h3>
+      <p>.</p>
+    </div>
+    <div class="bio-card">
+      <div class="hobby-icon">🎨</div>
+      <h3>Hobbies</h3>
+      <p>.</p>
+    </div>
+  </div>
+
+  <div class="fun-fact" id="funFact">
+    <p>Click for a random fun fact about me!</p>
+  </div>
+
+  <div class="social-links">
+    <a href="#" class="social-link">in</a>
+    <a href="#" class="social-link">gh</a>
+    <a href="#" class="social-link">tw</a>
+  </div>
+</div>
 
    <!-- About Section -->
 
@@ -1849,7 +2104,88 @@
     astronaut.addEventListener('click', () => {
       astronaut.style.filter = `hue-rotate(${Math.random() * 360}deg) drop-shadow(0 0 20px rgba(255,255,255,0.5))`;
     });
+    document.addEventListener('DOMContentLoaded', function() {
+  // Typing animation
+  const text = "";
+  const typingText = document.querySelector('.typing-text');
+  let i = 0;
 
+  function typeWriter() {
+    if (i < text.length) {
+      typingText.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(typeWriter, 30);
+    }
+  }
+
+  typeWriter();
+
+  // Animate bio cards on scroll
+  const cards = document.querySelectorAll('.bio-card');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, index) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, index * 200);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cards.forEach(card => observer.observe(card));
+
+  // Fun facts system
+  const funFacts = [
+    "I once cooked dinner for 100 people!",
+    "I've climbed Mount Kilimanjaro",
+    "I can juggle while riding a unicycle",
+    "I've written a children's book",
+    "I collect vintage cameras"
+  ];
+
+  let currentFactIndex = 0;
+  const funFactElement = document.getElementById('funFact');
+  
+  funFactElement.addEventListener('click', () => {
+    funFactElement.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      currentFactIndex = (currentFactIndex + 1) % funFacts.length;
+      funFactElement.innerHTML = `<p>${funFacts[currentFactIndex]}</p>`;
+      funFactElement.style.transform = 'scale(1)';
+    }, 200);
+  });
+
+  // Interest tags interaction
+  const interestTags = document.querySelectorAll('.interest-tag');
+  interestTags.forEach(tag => {
+    tag.addEventListener('click', () => {
+      tag.classList.add('animate-pulse');
+      setTimeout(() => tag.classList.remove('animate-pulse'), 2000);
+    });
+  });
+
+  // Parallax effect for floating shapes
+  document.addEventListener('mousemove', (e) => {
+    const shapes = document.querySelectorAll('.floating-shapes div');
+    const speed = 0.5;
+    
+    shapes.forEach((shape, index) => {
+      const x = (window.innerWidth - e.pageX * speed) / 100;
+      const y = (window.innerHeight - e.pageY * speed) / 100;
+      
+      shape.style.transform = `translate(${x * (index + 1)}px, ${y * (index + 1)}px) rotate(${x * y}deg)`;
+    });
+  });
+
+  // Profile image interaction
+  const profileImg = document.querySelector('.profile-image-container');
+  profileImg.addEventListener('click', () => {
+    profileImg.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+      profileImg.style.transform = 'scale(1)';
+    }, 200);
+  });
+});
     // Start the rocket creation
     setInterval(createRocket, 6000);
       function openModal(imageSrc) {
@@ -2002,14 +2338,6 @@ const navbar = document.querySelector('.navbar');
                 navLinks.classList.remove('active');
             }
         });
-      // Interactive Gradient Text
-      const gradientText = document.querySelector(".gradient-text");
-      gradientText.addEventListener("mousemove", (e) => {
-        const rect = gradientText.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const percentage = (x / rect.width) * 100;
-        gradientText.style.backgroundPosition = `${percentage}% 50%`;
-      });
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
   </body>
