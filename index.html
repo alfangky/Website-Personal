@@ -5,6 +5,171 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AL FANGKY Portfolio</title>
     <style>
+      .projects-section {
+        padding: 4rem 2rem;
+        max-width: 1400px;
+        margin: 0 auto;
+        min-height: 100vh;
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 4rem;
+        font-size: 3rem;
+        color: #fff;
+        position: relative;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, #4f46e5, #06b6d4);
+      }
+
+      .projects-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        justify-content: center;
+        perspective: 1000px;
+      }
+
+      .project-card {
+        width: 350px;
+        height: 450px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        cursor: pointer;
+      }
+
+      .project-card.flipped {
+        transform: rotateY(180deg);
+      }
+
+      .card-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      }
+
+      .card-front {
+        background: var(--nav-bg);
+        transform-style: preserve-3d;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .card-back {
+        background: var(--nav-bg);
+        transform: rotateY(180deg);
+        padding: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .project-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 12px;
+        transform: translateZ(30px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      .project-title {
+        font-size: 1.5rem;
+        margin: 1.5rem 0;
+        transform: translateZ(50px);
+        text-align: center;
+      }
+
+      .project-preview {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        text-align: center;
+        transform: translateZ(30px);
+        margin-bottom: 1.5rem;
+      }
+
+      .project-description {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+      }
+
+      .tech-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .tech-item {
+        padding: 0.4rem 1rem;
+        background: rgba(79, 70, 229, 0.1);
+        border: 1px solid #4f46e5;
+        border-radius: 20px;
+        color: #818cf8;
+        font-size: 0.8rem;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+      }
+
+      .project-link {
+        padding: 0.6rem 1.2rem;
+        border: none;
+        border-radius: 25px;
+        background: linear-gradient(90deg, #4f46e5, #06b6d4);
+        font-size: 0.9rem;
+        text-decoration: none;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .project-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(79, 70, 229, 0.4);
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .projects-section {
+          padding: 2rem 1rem;
+        }
+
+        .project-card {
+          width: 100%;
+          max-width: 350px;
+        }
+      }
       :root {
         --primary: #2563eb;
         --bg: #eeebeb;
@@ -539,37 +704,6 @@
         color: #4ecdc4;
       }
 
-      .projects {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 2rem;
-        padding: 2rem 0;
-      }
-
-      .project-card {
-        background-color: var(--nav-bg);
-        border-radius: 10px;
-        padding: 1.5rem;
-        transform: translateY(0);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .project-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .project-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        border-radius: 5px;
-        margin-bottom: 1rem;
-      }
-
-      .project-card h3 {
-        margin-bottom: 0.5rem;
-      }
       .certificates-section {
         padding: 80px 20px;
         font-family: "Inter", sans-serif;
@@ -1516,32 +1650,14 @@
           </div>
         </div>
       </section>
-
-      <section class="projects" id="projects">
-        <div class="project-card">
-          <img
-            src="coming-soon-neon-sign-brick-wall-background-87865865.webp"
-            alt="Project 1"
-          />
-          <h3>Project One</h3>
-        </div>
-        <div class="project-card">
-          <img
-            src="coming-soon-neon-sign-brick-wall-background-87865865.webp"
-            alt="Project 2"
-          />
-          <h3>Project Two</h3>
-        </div>
-        <div class="project-card">
-          <img
-            src="coming-soon-neon-sign-brick-wall-background-87865865.webp"
-            alt="Project 3"
-          />
-          <h3>Project Three</h3>
-        </div>
-      </section>
     </main>
+    <section class="projects-section">
+      <h2 class="section-title">Featured Projects</h2>
 
+      <div class="projects-container">
+        <!-- Projects will be dynamically inserted here -->
+      </div>
+    </section>
     <section class="certificates-section">
       <div class="section-container">
         <div class="section-header">
@@ -1665,6 +1781,112 @@
     </footer>
 
     <script>
+      const projects = [
+        {
+          title: "Immersive Portfolio",
+          preview: "Work in progress",
+          description:
+            "Wwork in progress.",
+          image: "16-163773_recent-posts-work-in-progress-icon-png.png",
+          techStack: ["HTML", "CSS", "JavaScript", "React"],
+          liveLink: "#",
+          githubLink: "#",
+        },
+        {
+          title: "Startup Consultant",
+          preview: "Work in progress",
+          description:
+            "Work in progress.",
+          image: "16-163773_recent-posts-work-in-progress-icon-png.png",
+          techStack: ["HTML", "CSS", "JavaScript", "React"],
+          liveLink: "#",
+          githubLink: "#",
+        },
+        {
+          title: "Smart Home Dashboard",
+          preview: "Work in progress",
+          description:
+            "Work in progress.",
+          image: "16-163773_recent-posts-work-in-progress-icon-png.png",
+          techStack: ["HTML", "CSS", "JavaScript", "React"],
+          liveLink: "#",
+          githubLink: "#",
+        },
+      ];
+
+      function createProjectCard(project) {
+        const card = document.createElement("div");
+        card.className = "project-card";
+
+        card.innerHTML = `
+        <div class="card-face card-front">
+          <img src="${project.image}" alt="${
+          project.title
+        }" class="project-image">
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-preview">${project.preview}</p>
+        </div>
+        <div class="card-face card-back">
+          <h3 class="project-title">${project.title}</h3>
+          <p class="project-description">${project.description}</p>
+          <div class="tech-stack">
+            ${project.techStack
+              .map((tech) => `<span class="tech-item">${tech}</span>`)
+              .join("")}
+          </div>
+          <div class="project-links">
+            <a href="${
+              project.liveLink
+            }" class="project-link" target="_blank">Live Demo</a>
+            <a href="${
+              project.githubLink
+            }" class="project-link" target="_blank">View Code</a>
+          </div>
+        </div>
+      `;
+
+        // Add mouse move effect for 3D tilt
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 20;
+          const rotateY = (centerX - x) / 20;
+
+          if (!card.classList.contains("flipped")) {
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+          }
+        });
+
+        // Reset transform on mouse leave
+        card.addEventListener("mouseleave", () => {
+          if (!card.classList.contains("flipped")) {
+            card.style.transform =
+              "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)";
+          }
+        });
+
+        // Add click event to flip card
+        card.addEventListener("click", () => {
+          card.classList.toggle("flipped");
+          card.style.transform = card.classList.contains("flipped")
+            ? "rotateY(180deg)"
+            : "perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)";
+        });
+
+        return card;
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const container = document.querySelector(".projects-container");
+        projects.forEach((project) => {
+          container.appendChild(createProjectCard(project));
+        });
+      });
       function openModal(imageSrc) {
         const modal = document.getElementById("certificateModal");
         const modalImg = document.getElementById("modalImage");
