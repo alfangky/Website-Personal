@@ -5,6 +5,231 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AL FANGKY Portfolio</title>
     <style>
+          :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --accent-1: #06b6d4;
+      --accent-2: #818cf8;
+      --accent-3: #fb7185;
+      --card-shadow: 0 0 20px rgba(6, 182, 212, 0.15);
+    }
+
+    body {
+      background: var(--bg-dark);
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
+      color: var(--text-primary);
+    }
+
+    .skills-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      overflow: hidden;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 4rem;
+      background: linear-gradient(135deg, var(--accent-1), var(--accent-2), var(--accent-3));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: fadeInUp 1s ease forwards;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: 'SKILLS';
+      position: absolute;
+      top: -0.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 8rem;
+      opacity: 0.03;
+      letter-spacing: 1rem;
+      white-space: nowrap;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      perspective: 2000px;
+    }
+
+    .skill-card {
+      background: var(--nav-bg);
+      border-radius: 24px;
+      padding: 2rem;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: translateZ(0);
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      cursor: pointer;
+      opacity: 0;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    }
+
+    .skill-card::before {
+      content: '';
+      position: absolute;
+      inset: -5px;
+      border-radius: 28px;
+      background:var(--nav-bg);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      z-index: -1;
+    }
+
+    .skill-card:hover::before {
+      opacity: 1;
+    }
+
+    .skill-card::after {
+      content: '';
+      position: absolute;
+      inset: 1px;
+      background: var(--nav-bg);
+      border-radius: 24px;
+      z-index: -1;
+    }
+
+    .skill-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .skill-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      height: 60px;
+      width: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background:var(--nav-bg);
+      position: relative;
+      transform-style: preserve-3d;
+    }
+
+    .skill-icon i {
+      transition: transform 0.5s ease;
+    }
+
+    .skill-card:hover .skill-icon i {
+      animation: iconFloat 2s ease infinite;
+    }
+
+    .skill-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .skill-description {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      transform: translateZ(20px);
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .skill-tag {
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      background: var(--nav-bg);
+      border: 3px solid rgba(6, 182, 212, 0.2);
+      transition: all 0.3s ease;
+      transform: translateZ(30px);
+    }
+
+    .skill-card:hover .skill-tag {
+      animation: tagPulse 1.5s ease infinite;
+      animation-delay: calc(var(--delay) * 100ms);
+    }
+
+    .skill-progress {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+      transition: width 0.8s ease;
+      border-radius: 0 0 24px 24px;
+    }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0) rotateY(0); }
+      50% { transform: translateY(-10px) rotateY(180deg); }
+    }
+
+    @keyframes tagPulse {
+      0%, 100% { transform: translateZ(30px) scale(1); }
+      50% { transform: translateZ(30px) scale(1.05); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 20px rgba(6, 182, 212, 0.15); }
+      50% { box-shadow: 0 0 40px rgba(6, 182, 212, 0.3); }
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2.5rem;
+      }
+      
+      .section-title::after {
+        font-size: 5rem;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-card {
+        transform: none !important;
+      }
+    }
+
+    /* Particle effect */
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .particle {
+      position: absolute;
+      background: var(--accent-1);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+    }
       .projects-section {
         padding: 4rem 2rem;
         max-width: 1400px;
@@ -666,42 +891,6 @@
       .content-overlay.active .tag {
         opacity: 1;
         transform: translateY(0);
-      }
-      /* Skills Section Styles */
-      .skills {
-        padding: 6rem 2rem;
-        background: var(--bg-color);
-      }
-
-      .skills-content {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 2rem;
-        margin-top: 3rem;
-      }
-
-      .skill-card {
-        background: var(--nav-bg);
-        padding: 1.5rem;
-        border-radius: 10px;
-        text-align: center;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .skill-card:hover {
-        transform: translateY(-5px);
-      }
-
-      .skill-icon {
-        font-size: 2rem;
-        margin-bottom: 1rem;
-        color: #4ecdc4;
       }
 
       .certificates-section {
@@ -1532,6 +1721,362 @@
         display: flex;
         align-items: center;
       }
+      .cat-section {
+      position: relative;
+      height: 400px;
+      background: var(--bg-color);
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    /* Enhanced Stars */
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .star {
+      position: absolute;
+      border-radius: 50%;
+      animation: twinkle var(--twinkle-duration) infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { 
+        opacity: var(--min-opacity);
+        transform: scale(1);
+      }
+      50% { 
+        opacity: var(--max-opacity);
+        transform: scale(1.2);
+      }
+    }
+
+    /* Enhanced Moon */
+    .moon {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle at 35% 35%, 
+        #FFEFD5 0%, 
+        #FFE4B5 50%, 
+        #DEB887 100%
+      );
+      border-radius: 50%;
+      top: 40px;
+      right: 60px;
+      box-shadow: 0 0 30px #FFEFD5;
+      animation: moonGlow 8s infinite ease-in-out;
+    }
+
+    @keyframes moonGlow {
+      0%, 100% { box-shadow: 0 0 30px #FFEFD5; }
+      50% { box-shadow: 0 0 40px #FFEFD5; }
+    }
+
+    /* Enhanced Grass */
+    .grass-container {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100px;
+      overflow: hidden;
+    }
+
+    .grass {
+      position: absolute;
+      bottom: 0;
+      width: 6px;
+      background: linear-gradient(to top, 
+        #2D3B1C 0%, 
+        #3A4D24 40%, 
+        #4B6029 100%
+      );
+      border-radius: 10px 10px 0 0;
+      transform-origin: bottom;
+      animation: grassSway var(--sway-duration) infinite ease-in-out;
+    }
+
+    @keyframes grassSway {
+      0%, 100% { transform: rotate(var(--start-angle)); }
+      50% { transform: rotate(var(--end-angle)); }
+    }
+
+    /* Enhanced Cat */
+    .cat {
+      position: absolute;
+      bottom: 80px;
+      left: 50px;
+      width: 120px;
+      height: 90px;
+      cursor: pointer;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    }
+
+    .cat-body {
+      position: absolute;
+      width: 75px;
+      height: 48px;
+      background: linear-gradient(145deg,
+        #9B8B70 0%,
+        #8B7355 50%,
+        #6B5B45 100%
+      );
+      border-radius: 30px;
+      bottom: 0;
+      transform-origin: bottom center;
+    }
+
+    .fur-texture {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent 0,
+        rgba(255, 255, 255, 0.1) 1px,
+        transparent 2px
+      );
+      border-radius: inherit;
+    }
+
+    .cat-head {
+      position: absolute;
+      width: 48px;
+      height: 42px;
+      background: linear-gradient(145deg,
+        #9B8B70 0%,
+        #8B7355 50%,
+        #6B5B45 100%
+      );
+      border-radius: 50%;
+      bottom: 38px;
+      left: -5px;
+      transform-origin: bottom center;
+    }
+
+    .ear-left, .ear-right {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-bottom: 22px solid #6B5B45;
+      top: -16px;
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .ear-left::after, .ear-right::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 12px solid #9B8B70;
+      left: -8px;
+      top: 6px;
+    }
+
+    .ear-left {
+      left: -6px;
+      transform: rotate(-30deg);
+    }
+
+    .ear-right {
+      right: -6px;
+      transform: rotate(30deg);
+    }
+
+    .eye-left, .eye-right {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: radial-gradient(circle at 40% 40%,
+        #FFD700 0%,
+        #FFA500 100%
+      );
+      border-radius: 50%;
+      top: 15px;
+      animation: glowEyes 4s infinite ease-in-out;
+    }
+
+    .eye-left::after, .eye-right::after {
+      content: '';
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: #000;
+      border-radius: 50%;
+      top: 3px;
+      left: 3px;
+      transition: all 0.3s ease;
+    }
+
+    @keyframes glowEyes {
+      0%, 100% { 
+        box-shadow: 0 0 8px #FFD700;
+        filter: brightness(1);
+      }
+      50% { 
+        box-shadow: 0 0 12px #FFD700;
+        filter: brightness(1.2);
+      }
+    }
+
+    .eye-left {
+      left: 10px;
+    }
+
+    .eye-right {
+      right: 10px;
+    }
+
+    .nose {
+      position: absolute;
+      width: 7px;
+      height: 5px;
+      background: linear-gradient(145deg, #FFA07A, #FF6B4A);
+      border-radius: 50%;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .whiskers-left, .whiskers-right {
+      position: absolute;
+      top: 24px;
+    }
+
+    .whisker {
+      position: absolute;
+      width: 20px;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.7);
+      transform-origin: 0 50%;
+    }
+
+    .whiskers-left {
+      left: 0;
+    }
+
+    .whiskers-right {
+      right: 0;
+    }
+
+    .tail {
+      position: absolute;
+      width: 50px;
+      height: 14px;
+      background: linear-gradient(145deg,
+        #9B8B70 0%,
+        #8B7355 50%,
+        #6B5B45 100%
+      );
+      right: -22px;
+      bottom: 15px;
+      border-radius: 7px;
+      transform-origin: left center;
+      animation: tailWag 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .paw {
+      position: absolute;
+      width: 20px;
+      height: 12px;
+      background: linear-gradient(145deg, #5C4033, #4A3328);
+      border-radius: 10px;
+      bottom: -6px;
+      transition: transform 0.2s;
+    }
+
+    .paw-left {
+      left: 14px;
+    }
+
+    .paw-right {
+      right: 14px;
+    }
+
+    @keyframes tailWag {
+      0%, 100% { 
+        transform: rotate(0deg) scaleX(1); 
+      }
+      25% { 
+        transform: rotate(15deg) scaleX(0.95); 
+      }
+      75% { 
+        transform: rotate(-15deg) scaleX(0.95); 
+      }
+    }
+
+    @keyframes walkCycle {
+      0%, 100% { 
+        transform: translateY(0) rotate(0deg);
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      25% { 
+        transform: translateY(-3px) rotate(2deg);
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      50% { 
+        transform: translateY(0) rotate(0deg);
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      75% { 
+        transform: translateY(-3px) rotate(-2deg);
+        animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+
+    .firefly {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: rgba(255, 255, 153, 0.8);
+      border-radius: 50%;
+      pointer-events: none;
+      opacity: 0;
+      filter: blur(1px);
+      animation: fireflyGlow 4s infinite ease-in-out;
+    }
+
+    @keyframes fireflyGlow {
+      0%, 100% { 
+        box-shadow: 0 0 8px #FFFF99;
+        opacity: 0.4;
+      }
+      50% { 
+        box-shadow: 0 0 12px #FFFF99;
+        opacity: 0.8;
+      }
+    }
+
+    .shadow {
+      position: absolute;
+      bottom: -5px;
+      left: 10px;
+      width: 60px;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 50%;
+      filter: blur(3px);
+      transform-origin: center;
+      animation: shadowMove 1s infinite ease-in-out;
+    }
+
+    @keyframes shadowMove {
+      0%, 100% { 
+        transform: scaleX(1) translateY(0);
+        opacity: 0.2;
+      }
+      50% { 
+        transform: scaleX(0.8) translateY(-1px);
+        opacity: 0.1;
+      }
+    }
     </style>
   </head>
   <body>
@@ -1625,31 +2170,12 @@
       </section>
 
       <!-- About Section -->
-
-      <!-- Skills Section -->
-      <section class="skills" id="skills">
-        <div class="skills-content">
-          <h2 class="section-titlex">My Skills</h2>
-          <div class="skills-grid">
-            <div class="skill-card">
-              <i class="fab fa-html5 skill-icon"></i>
-              <h3>HTML</h3>
-            </div>
-            <div class="skill-card">
-              <i class="fab fa-css3-alt skill-icon"></i>
-              <h3>CSS</h3>
-            </div>
-            <div class="skill-card">
-              <i class="fab fa-js skill-icon"></i>
-              <h3>JavaScript</h3>
-            </div>
-            <div class="skill-card">
-              <i class="fab fa-react skill-icon"></i>
-              <h3>React</h3>
-            </div>
-          </div>
-        </div>
+      <div class="particles"></div>
+      <section class="skills-container">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid"></div>
       </section>
+    
     </main>
     <section class="projects-section">
       <h2 class="section-title">Featured Projects</h2>
@@ -1730,7 +2256,39 @@
         <img id="modalImage" src="" alt="Certificate Preview" />
       </div>
     </div>
-
+    <div class="cat-section">
+      <div class="stars"></div>
+      <div class="moon"></div>
+      <div class="cat">
+        <div class="shadow"></div>
+        <div class="cat-body">
+          <div class="fur-texture"></div>
+          <div class="paw paw-left"></div>
+          <div class="paw paw-right"></div>
+        </div>
+        <div class="cat-head">
+          <div class="fur-texture"></div>
+          <div class="ear-left"></div>
+          <div class="ear-right"></div>
+          <div class="eye-left"></div>
+          <div class="eye-right"></div>
+          <div class="nose"></div>
+          <div class="whiskers-left">
+            <div class="whisker" style="transform: rotate(-10deg) translateY(-5px)"></div>
+            <div class="whisker"></div>
+            <div class="whisker" style="transform: rotate(10deg) translateY(5px)"></div>
+          </div>
+          <div class="whiskers-right">
+            <div class="whisker" style="transform: rotate(170deg) translateY(-5px)"></div>
+            <div class="whisker" style="transform: rotate(180deg)"></div>
+            <div class="whisker" style="transform: rotate(190deg) translateY(5px)"></div>
+          </div>
+        </div>
+        <div class="tail"></div>
+      </div>
+      <div class="grass-container"></div>
+    </div>
+  
     <div class="slider-wrapper">
       <div class="sliding-text">
         <!-- Three copies for smoother infinite loop -->
@@ -1781,6 +2339,353 @@
     </footer>
 
     <script>
+          // Enhanced star generation
+    const stars = document.querySelector('.stars');
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      const size = Math.random() * 3;
+      star.style.width = size + 'px';
+      star.style.height = size + 'px';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.setProperty('--twinkle-duration', (2 + Math.random() * 3) + 's');
+      star.style.setProperty('--min-opacity', 0.2 + Math.random() * 0.3);
+      star.style.setProperty('--max-opacity', 0.7 + Math.random() * 0.3);
+      stars.appendChild(star);
+    }
+
+    // Enhanced grass generation
+    const grassContainer = document.querySelector('.grass-container');
+    for (let i = 0; i < 150; i++) {
+      const grass = document.createElement('div');
+      grass.className = 'grass';
+      grass.style.left = i * 8 + 'px';
+      grass.style.height = 25 + Math.random() * 35 + 'px';
+      grass.style.setProperty('--sway-duration', (2 + Math.random() * 2) + 's');
+      grass.style.setProperty('--start-angle', (-2 - Math.random() * 3) + 'deg');
+      grass.style.setProperty('--end-angle', (2 + Math.random() * 3) + 'deg');
+      grassContainer.appendChild(grass);
+    }
+
+    // [Previous star and grass generation code remains the same...]
+
+    const cat = document.querySelector('.cat');
+    const section = document.querySelector('.cat-section');
+    let isMoving = false;
+    let direction = 1;
+    let position = 50;
+    let lastTime = 0;
+    const MOVE_SPEED = 1;
+
+    // Enhanced smooth walking animation
+    function walkCat(timestamp) {
+      if (!isMoving) return;
+      
+      const deltaTime = timestamp - lastTime;
+      lastTime = timestamp;
+      
+      position += MOVE_SPEED * direction * (deltaTime / 16);
+      cat.style.left = position + 'px';
+      
+      if (position >= section.offsetWidth - 120) {
+        direction = -1;
+        cat.style.transform = 'scaleX(-1)';
+      } else if (position <= 0) {
+        direction = 1;
+        cat.style.transform = 'scaleX(1)';
+      }
+
+      // Animate grass near cat
+      const grassBlades = document.querySelectorAll('.grass');
+      const catRect = cat.getBoundingClientRect();
+      const catCenter = catRect.left + catRect.width / 2;
+
+      grassBlades.forEach(blade => {
+        const bladeRect = blade.getBoundingClientRect();
+        const distance = Math.abs(bladeRect.left - catCenter);
+        if (distance < 50) {
+          const intensity = (50 - distance) / 50;
+          blade.style.transform = `rotate(${5 * intensity * direction}deg)`;
+        }
+      });
+
+      requestAnimationFrame(walkCat);
+    }
+
+    // Enhanced firefly generation
+    function createFirefly(x, y) {
+      const firefly = document.createElement('div');
+      firefly.className = 'firefly';
+      firefly.style.left = x + 'px';
+      firefly.style.top = y + 'px';
+      section.appendChild(firefly);
+
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 0.5 + Math.random() * 1;
+      let currentX = x;
+      let currentY = y;
+      let time = 0;
+
+      function animateFirefly() {
+        time += 0.02;
+        currentX += Math.cos(angle + time) * speed;
+        currentY += Math.sin(angle + time) * speed - 0.5;
+        
+        firefly.style.left = currentX + 'px';
+        firefly.style.top = currentY + 'px';
+        
+        if (currentY > 0 && currentY < section.offsetHeight && currentX > 0 && currentX < section.offsetWidth) {
+          requestAnimationFrame(animateFirefly);
+        } else {
+          firefly.remove();
+        }
+      }
+
+      firefly.style.opacity = '1';
+      animateFirefly();
+    }
+
+    // Generate fireflies periodically
+    setInterval(() => {
+      if (Math.random() < 0.7) {
+        const x = Math.random() * section.offsetWidth;
+        const y = Math.random() * (section.offsetHeight - 100) + 50;
+        createFirefly(x, y);
+      }
+    }, 1000);
+
+    // Enhanced cat interaction
+    cat.addEventListener('click', () => {
+      isMoving = !isMoving;
+      if (isMoving) {
+        cat.querySelector('.cat-body').style.animation = 'walkCycle 1s infinite cubic-bezier(0.4, 0, 0.2, 1)';
+        cat.querySelector('.cat-head').style.animation = 'walkCycle 1s infinite cubic-bezier(0.4, 0, 0.2, 1)';
+        lastTime = performance.now();
+        walkCat(lastTime);
+      } else {
+        cat.querySelector('.cat-body').style.animation = 'none';
+        cat.querySelector('.cat-head').style.animation = 'none';
+      }
+    });
+
+    // Enhanced eye and ear movement
+    section.addEventListener('mousemove', (e) => {
+      const eyes = document.querySelectorAll('.eye-left, .eye-right');
+      const ears = document.querySelectorAll('.ear-left, .ear-right');
+      const catRect = cat.getBoundingClientRect();
+      const catCenterX = catRect.left + catRect.width / 2;
+      const catCenterY = catRect.top + catRect.height / 2;
+      
+      // Calculate angle for eye movement
+      eyes.forEach(eye => {
+        const eyeRect = eye.getBoundingClientRect();
+        const eyeCenterX = eyeRect.left + eyeRect.width / 2;
+        const eyeCenterY = eyeRect.top + eyeRect.height / 2;
+        
+        const deltaX = e.clientX - eyeCenterX;
+        const deltaY = e.clientY - eyeCenterY;
+        const angle = Math.atan2(deltaY, deltaX);
+        
+        const pupil = eye.querySelector('::after');
+        if (pupil) {
+          const distance = Math.min(Math.hypot(deltaX, deltaY) / 100, 1);
+          const offsetX = Math.cos(angle) * distance * 3;
+          const offsetY = Math.sin(angle) * distance * 3;
+          pupil.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
+        }
+      });
+      
+      // Calculate ear movement
+      const mouseX = e.clientX;
+      const earRotation = (mouseX - catCenterX) / 200;
+      
+      document.querySelector('.ear-left').style.transform = 
+        `rotate(${-30 + earRotation * 5}deg)`;
+      document.querySelector('.ear-right').style.transform = 
+        `rotate(${30 + earRotation * 5}deg)`;
+      
+      // Animate whiskers subtly
+      const whiskers = document.querySelectorAll('.whisker');
+      const whiskerRotation = (mouseX - catCenterX) / 400;
+      
+      whiskers.forEach(whisker => {
+        const currentRotation = parseFloat(whisker.style.transform.match(/-?\d+/)[0] || 0);
+        whisker.style.transform = `rotate(${currentRotation + whiskerRotation}deg)`;
+      });
+    });
+
+    // Add shadow animation
+    function updateShadow() {
+      const shadow = document.querySelector('.shadow');
+      if (isMoving) {
+        shadow.style.animation = 'shadowMove 1s infinite cubic-bezier(0.4, 0, 0.2, 1)';
+      } else {
+        shadow.style.animation = 'none';
+      }
+    }
+
+    // Initialize some random grass movement
+    setInterval(() => {
+      const randomGrass = document.querySelectorAll('.grass');
+      randomGrass.forEach(grass => {
+        if (Math.random() < 0.1) {
+          const newAngle = -5 + Math.random() * 10;
+          grass.style.transform = `rotate(${newAngle}deg)`;
+        }
+      });
+    }, 2000);
+          const skills = [
+      {
+        name: 'Front-End Development',
+        icon: 'fa-code',
+        description: 'Crafting immersive user interfaces with cutting-edge web technologies.',
+        tags: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Vue.js'],
+        progress: 95
+      },
+      {
+        name: 'Back-End Development',
+        icon: 'fa-server',
+        description: 'Building scalable server architectures and robust APIs.',
+        tags: ['Node.js', 'Python', 'MongoDB', 'GraphQL'],
+        progress: 90
+      },
+      {
+        name: 'UI/UX Design',
+        icon: 'fa-palette',
+        description: 'Creating intuitive and delightful user experiences.',
+        tags: ['Figma', 'Adobe XD', 'Prototyping', 'Wireframing'],
+        progress: 85
+      },
+      {
+        name: 'Cloud Architecture',
+        icon: 'fa-cloud',
+        description: 'Designing and implementing cloud-native solutions.',
+        tags: ['AWS', 'Azure', 'Docker', 'Kubernetes'],
+        progress: 88
+      },
+      {
+        name: 'Mobile Development',
+        icon: 'fa-mobile-screen',
+        description: 'Developing cross-platform mobile experiences.',
+        tags: ['React Native', 'Flutter', 'iOS', 'Android'],
+        progress: 82
+      },
+      {
+        name: 'Data Science',
+        icon: 'fa-brain',
+        description: 'Analyzing data and creating ML models.',
+        tags: ['Python', 'TensorFlow', 'PyTorch', 'Data Analysis'],
+        progress: 80
+      }
+    ];
+
+    function createParticles(x, y) {
+      const particlesContainer = document.querySelector('.particles');
+      const particleCount = 5;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        
+        const size = Math.random() * 8 + 4;
+        const angle = (Math.random() * Math.PI * 2);
+        const velocity = Math.random() * 4 + 2;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${x}px`;
+        particle.style.top = `${y}px`;
+        
+        particlesContainer.appendChild(particle);
+        
+        const animation = particle.animate([
+          {
+            transform: `translate(0, 0)`,
+            opacity: 1
+          },
+          {
+            transform: `translate(${Math.cos(angle) * 100}px, ${Math.sin(angle) * 100}px)`,
+            opacity: 0
+          }
+        ], {
+          duration: 1000,
+          easing: 'cubic-bezier(0, .9, .57, 1)',
+          fill: 'forwards'
+        });
+        
+        animation.onfinish = () => particle.remove();
+      }
+    }
+
+    const skillsGrid = document.querySelector('.skills-grid');
+
+    skills.forEach((skill, index) => {
+      const skillCard = document.createElement('div');
+      skillCard.className = 'skill-card';
+      skillCard.style.animationDelay = `${index * 0.2}s`;
+      
+      const skillContent = `
+        <div class="skill-content">
+          <div class="skill-icon">
+            <i class="fas ${skill.icon}"></i>
+          </div>
+          <h3 class="skill-title">${skill.name}</h3>
+          <p class="skill-description">${skill.description}</p>
+          <div class="skill-tags">
+            ${skill.tags.map((tag, i) => `<span class="skill-tag" style="--delay: ${i}">${tag}</span>`).join('')}
+          </div>
+          <div class="skill-progress"></div>
+        </div>
+      `;
+
+      skillCard.innerHTML = skillContent;
+      skillsGrid.appendChild(skillCard);
+
+      // Add animation when card comes into view
+      setTimeout(() => {
+        skillCard.style.opacity = 1;
+        skillCard.style.transform = 'translateZ(0)';
+      }, index * 200);
+
+      // Progress bar animation
+      const progress = skillCard.querySelector('.skill-progress');
+      setTimeout(() => {
+        progress.style.width = `${skill.progress}%`;
+      }, (index * 200) + 500);
+    });
+
+    // 3D card effect
+    document.querySelectorAll('.skill-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = ((y - centerY) / centerY) * 10;
+        const rotateY = ((x - centerX) / centerX) * 10;
+        
+        card.style.transform = `
+          perspective(1000px)
+          rotateX(${-rotateX}deg)
+          rotateY(${rotateY}deg)
+          translateZ(50px)
+        `;
+
+        createParticles(e.clientX, e.clientY);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
+      });
+
+      card.addEventListener('click', (e) => {
+        createParticles(e.clientX, e.clientY);
+      });
+    });
       const projects = [
         {
           title: "Immersive Portfolio",
