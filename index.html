@@ -2073,6 +2073,182 @@
         opacity: 0.1;
       }
     }
+    .logo-slider {
+            width: 100%;
+            overflow: hidden;
+            background: var(--body);
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .logo-slide-track {
+            display: flex;
+            animation: scroll 30s linear infinite;
+            width: calc(280px * 12);
+            transition: all 0.5s ease;
+        }
+
+        .logo-slide {
+            width: 280px;
+            height: 150px; /* Set a consistent height container */
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .logo-slide .logo-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-slide img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain; /* Maintain aspect ratio */
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.4s ease;
+            transform: scale(0.95);
+        }
+
+        .logo-slide:hover img {
+            filter: grayscale(0%);
+            opacity: 1;
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-280px * 6));
+            }
+        }
+
+        /* Gradient overlays */
+        .logo-slider::before,
+        .logo-slider::after {
+            content: "";
+            height: 100%;
+            width: 150px;
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-slider::before {
+            left: 0;
+            background: var(--body);
+        }
+
+        .logo-slider::after {
+            right: 0;
+            background: var(--body);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .logo-slide {
+                width: 240px;
+                height: 130px;
+            }
+
+            .logo-slide-track {
+                width: calc(240px * 12);
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-240px * 6));
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            .logo-slide {
+                width: 200px;
+                height: 110px;
+            }
+
+            .logo-slide-track {
+                width: calc(200px * 12);
+            }
+
+            .logo-slider::before,
+            .logo-slider::after {
+                width: 80px;
+            }
+
+            @keyframes scroll {
+                0% {
+                    transform: translateX(0);
+                }
+                100% {
+                    transform: translateX(calc(-200px * 6));
+                }
+            }
+        }
+
+        /* Enhanced pause behavior */
+        .logo-slider:hover .logo-slide-track {
+            animation-play-state: paused;
+        }
+
+        /* Loading animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .logo-slide {
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        /* Tooltip */
+        .logo-tooltip {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            z-index: 3;
+        }
+
+        .logo-slide:hover .logo-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
     </style>
   </head>
   <body>
@@ -2252,6 +2428,90 @@
         <img id="modalImage" src="" alt="Certificate Preview" />
       </div>
     </div>
+    <div>
+      <h2 class="section-title">PARTNERS</h2>
+    </div>
+    <div class="logo-slider">
+    <div class="logo-slide-track">
+      
+        <!-- First set of logos with different sizes -->
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="Pertamina_Logo.svg.png" alt="Partner 1"> <!-- Wide logo -->
+            </div>
+            <div class="logo-tooltip">Partner Company 1</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="Logo_BUMN_Untuk_Indonesia_2020.svg.png" alt="Partner 2"> <!-- Square logo -->
+            </div>
+            <div class="logo-tooltip">Partner Company 2</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="ICBP.JK_BIG-558be07b.png" alt="Partner 3"> <!-- Wide logo -->
+            </div>
+            <div class="logo-tooltip">Indofood Sukses Makmur Tbk</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="logo-freeport-indonesia-1.webp" alt="Partner 4"> <!-- Tall logo -->
+            </div>
+            <div class="logo-tooltip">PT. Freeport Indonesia</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="Kapal Api.png" alt="Partner 5"> <!-- Wide logo -->
+            </div>
+            <div class="logo-tooltip">PT. Global Santos Jaya Abadi</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="mandiri-logo-freelogovectors.net_.png" alt="Partner 6"> <!-- Medium logo -->
+            </div>
+            <div class="logo-tooltip">Partner Company 6</div>
+        </div>
+
+        <!-- Duplicate set with different sizes -->
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="Pertamina_Logo.svg.png" alt="Partner 1">
+            </div>
+            <div class="logo-tooltip">Partner Company 1</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="Logo_BUMN_Untuk_Indonesia_2020.svg.png" alt="Partner 2">
+            </div>
+            <div class="logo-tooltip">Partner Company 2</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="ICBP.JK_BIG-558be07b.png" alt="Partner 3">
+            </div>
+            <div class="logo-tooltip">Indofood Sukses Makmur Tbk</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="logo-freeport-indonesia-1.webp" alt="Partner 4">
+            </div>
+            <div class="logo-tooltip">PT. Freeport Indonesia</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="Kapal Api.png" alt="Partner 5">
+            </div>
+            <div class="logo-tooltip">PT. Global Santos Jaya Abadi</div>
+        </div>
+        <div class="logo-slide">
+            <div class="logo-container">
+                <img src="mandiri-logo-freelogovectors.net_.png" alt="Partner 6">
+            </div>
+            <div class="logo-tooltip">Partner Company 6</div>
+        </div>
+    </div>
+</div>
+
     <div class="cat-section">
       <div class="stars"></div>
       <div class="moon"></div>
@@ -2335,6 +2595,41 @@
     </footer>
 
     <script>
+              // Check if the user prefers reduced motion
+              const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const slider = document.querySelector('.logo-slider');
+        const track = document.querySelector('.logo-slide-track');
+        
+        function handleMotionPreference() {
+            if (mediaQuery.matches) {
+                track.style.animation = 'none';
+            } else {
+                track.style.animation = 'scroll 30s linear infinite';
+            }
+        }
+
+        // Initial check
+        handleMotionPreference();
+        
+        // Listen for changes in motion preference
+        mediaQuery.addEventListener('change', handleMotionPreference);
+
+        // Add loading animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const slides = document.querySelectorAll('.logo-slide');
+            slides.forEach((slide, index) => {
+                slide.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Enhanced pause behavior
+        slider.addEventListener('mouseenter', () => {
+            track.style.animationPlayState = 'paused';
+        });
+
+        slider.addEventListener('mouseleave', () => {
+            track.style.animationPlayState = 'running';
+        });
           // Enhanced star generation
     const stars = document.querySelector('.stars');
     for (let i = 0; i < 150; i++) {
