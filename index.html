@@ -47,7 +47,7 @@
       transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
       cursor: pointer;
       opacity: 0;
-      box-shadow: 0 5px 25px ;
+      box-shadow: 0 1px 0 5px #00ff41;
       color: var(--primary-color);
     }
 
@@ -260,7 +260,7 @@
         backface-visibility: hidden;
         border-radius: 20px;
         overflow: hidden;
-        box-shadow: 0 5px 20px #00ff41;
+        box-shadow: 0 1px 0 5px #00ff41;
       }
 
       .card-front {
@@ -335,9 +335,8 @@
 
       .project-link {
         padding: 0.6rem 1.2rem;
-        border: none;
+        border: 1px solid #00ff41;
         border-radius: 25px;
-        background: var(--primary-color);
         font-size: 0.9rem;
         text-decoration: none;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -620,7 +619,7 @@
         background: var(--nav-bg);
         border-radius: 15px;
         overflow: hidden;
-        box-shadow: 0 10px 20px #00ff41;
+        box-shadow: 0 1px 0 5px #00ff41;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
       }
@@ -842,10 +841,6 @@
         animation: slide 20s linear infinite;
       }
 
-      .slider-wrapper:hover .sliding-text {
-        animation-play-state: paused;
-      }
-
       @keyframes slide {
         0% {
           transform: translateX(0);
@@ -956,10 +951,6 @@
         animation: slide 20s linear infinite;
       }
 
-      .slider-wrapper:hover .sliding-text {
-        animation-play-state: paused;
-      }
-
       @keyframes slide {
         0% {
           transform: translateX(0);
@@ -1055,6 +1046,7 @@
             background: var(--body);
             padding: 60px 0;
             position: relative;
+            box-shadow: 0 1px 0 5px #00ff41;
         }
 
         .logo-slide-track {
@@ -1181,10 +1173,6 @@
             }
         }
 
-        /* Enhanced pause behavior */
-        .logo-slider:hover .logo-slide-track {
-            animation-play-state: paused;
-        }
 
         /* Loading animation */
         @keyframes fadeIn {
@@ -2589,20 +2577,9 @@ $$$"                         $$$$"
 [ACCESS_LEVEL]: Maximum Security Clearance
 [STATUS]: Authentication verified
 
->_ Elite security specialist operating in the digital underground
->_ Specializing in advanced penetration testing and zero-day research
->_ Current mission: Hardening systems against quantum-based attacks
-
-[SKILLS_LOADED]:
->_ Advanced exploit development
->_ Malware analysis and reverse engineering
->_ Neural network penetration
->_ Quantum encryption protocols
-
-[CURRENT_OPERATIONS]:
->_ Leading red team operations
->_ Developing next-gen security frameworks
->_ Training AI defense systems
+>_ Information System Student
+>_ Creative web development
+>_ UI/UX Designer
 
 [WARNING]: Further details classified...
 [END_TRANSMISSION]
@@ -2908,11 +2885,6 @@ document.addEventListener('DOMContentLoaded', () => {
             slides.forEach((slide, index) => {
                 slide.style.animationDelay = `${index * 0.1}s`;
             });
-        });
-
-        // Enhanced pause behavior
-        slider.addEventListener('mouseenter', () => {
-            track.style.animationPlayState = 'paused';
         });
 
         slider.addEventListener('mouseleave', () => {
