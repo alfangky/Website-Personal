@@ -1634,7 +1634,6 @@
         }
 
         .navbar {
-            background: var(--body);
             border-bottom: 2px solid var(--neon-green);
             padding: 1rem;
             position: fixed;
@@ -2141,6 +2140,60 @@
         margin: 0 auto;
       }
     }
+    .ascii-section {
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .ascii-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .ascii-art {
+            font-family: monospace;
+            white-space: pre;
+            color: #00ff00;
+            font-size: 14px;
+            line-height: 1.2;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .section-title {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            font-family: 'Arial', sans-serif;
+        }
+
+        @media (max-width: 768px) {
+            .ascii-art {
+                font-size: 10px;
+            }
+            
+            .ascii-section {
+                padding: 1rem;
+                margin: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .ascii-art {
+                font-size: 6px;
+            }
+        }
     </style>
   </head>
   <body>
@@ -2199,6 +2252,7 @@
 
 
   <div class="hero-container">
+    
     <canvas id="matrixCanvas" class="matrix-bg"></canvas>
     
     <div class="scan-line"></div>
@@ -2217,6 +2271,49 @@
         </div>
     </div>
 </div>
+<section class="ascii-section">
+  <div class="ascii-container">
+      <pre class="ascii-art">
+/$$$$$$  /$$             /$$$$$$$$ /$$$$$$  /$$   /$$  /$$$$$$  /$$   /$$ /$$     /$$
+/ $$ __ $$| $$            | $$_____//$$__  $$| $$$ | $$ /$$__  $$| $$  /$$/|  $$   /$$/
+| $$  \ $$| $$            | $$     | $$  \ $$| $$$$| $$| $$  \__/| $$ /$$/  \  $$ /$$/ 
+| $$$$$$$$| $$            | $$$$$  | $$$$$$$$| $$ $$ $$| $$ /$$$$| $$$$$/    \  $$$$/  
+| $$__  $$| $$            | $$__/  | $$__  $$| $$  $$$$| $$|_  $$| $$  $$     \  $$/   
+| $$  | $$| $$            | $$     | $$  | $$| $$\  $$$| $$  \ $$| $$\  $$     | $$    
+| $$  | $$| $$$$$$$$      | $$     | $$  | $$| $$ \  $$|  $$$$$$/| $$ \  $$    | $$    
+|__/  |__/|________/      |__/     |__/  |__/|__/  \__/ \______/ |__/  \__/    |__/    
+                                                                                             
+                                                                                                                                                             
+uuuuuuu
+uu$$$$$$$$$$$uu
+uu$$$$$$$$$$$$$$$$$uu
+u$$$$$$$$$$$$$$$$$$$$$u
+u$$$$$$$$$$$$$$$$$$$$$$$u
+u$$$$$$$$$$$$$$$$$$$$$$$$$u
+u$$$$$$$$$$$$$$$$$$$$$$$$$u
+u$$$$$$"   "$$$"   "$$$$$$u
+"$$$$"      u$u       $$$$"
+$$$u       u$u       u$$$
+$$$u      u$$$u      u$$$
+"$$$$uu$$$   $$$uu$$$$"
+"$$$$$$$"   "$$$$$$$"
+u$$$$$$$u$$$$$$$u
+u$"$"$"$"$"$"$u
+uuu        $$u$ $ $ $ $u$$       uuu
+u$$$$        $$$$$u$u$u$$$       u$$$$
+$$$$$uu      "$$$$$$$$$"     uu$$$$$$      unknown
+u$$$$$$$$$$$uu    """""    uuuu$$$$$$$$$$
+$$$$"""$$$$$$$$$$uuu   uu$$$$$$$$$"""$$$"
+"""      ""$$$$$$$$$$$uu ""$"""
+uuuu ""$$$$$$$$$$uuu
+u$$$uuu$$$$$$$$$uu ""$$$$$$$$$$$uuu$$$
+$$$$$$$$$$""""           ""$$$$$$$$$$$"
+"$$$$$"                      ""$$$$""
+$$$"                         $$$$"
+      </pre>
+  </div>
+</section>
+
 <div class="m41nfr4m3">
   <div class="b1n4ry_r41n" id="b1n4ry"></div>
   <div class="gl1tch_l1n3s"></div>
@@ -2432,6 +2529,31 @@
   </footer>
 
     <script>
+              // Function to adjust ASCII art size based on window width
+              function adjustAsciiSize() {
+            const container = document.querySelector('.ascii-container');
+            const art = document.querySelector('.ascii-art');
+            
+            // Get container width
+            const containerWidth = container.offsetWidth;
+            
+            // Base font size calculations
+            let fontSize = 14;
+            
+            if (window.innerWidth <= 480) {
+                fontSize = 6;
+            } else if (window.innerWidth <= 768) {
+                fontSize = 10;
+            }
+            
+            art.style.fontSize = `${fontSize}px`;
+        }
+
+        // Initial adjustment
+        adjustAsciiSize();
+
+        // Adjust on window resize
+        window.addEventListener('resize', adjustAsciiSize);
           // Binary rain effect
     function createBinaryRain() {
       const binary = document.getElementById('b1n4ry');
