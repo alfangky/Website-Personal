@@ -12,7 +12,6 @@
       margin: 0 auto;
       padding: 4rem 2rem;
       overflow: hidden;
-      color: var(--primary-color);
     }
 
     .section-title {
@@ -20,7 +19,6 @@
       font-size: 3.5rem;
       margin-bottom: 4rem;
       position: relative;
-      background: var(--primary-color);
     }
 
     .section-title::after {
@@ -232,7 +230,6 @@
         transform: translateX(-50%);
         width: 100px;
         height: 4px;
-        background: #00ff41;
       }
 
       .projects-container {
@@ -1262,16 +1259,7 @@
             overflow: hidden;
         }
 
-        .matrix-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            opacity: 0.2;
-            pointer-events: none;
-        }
+
 
         .hero-content {
             position: relative;
@@ -1573,7 +1561,6 @@
             --neon-green: #0f0;
             --dark-bg: #000;
             --glitch-color: #0ff;
-            --matrix-color: #00ff00;
             --terminal-green: #39ff14;
             --error-red: #ff0033;
             --warning-yellow: #ffff00;
@@ -1616,10 +1603,6 @@
             }
         }
 
-        @keyframes matrix-rain {
-            0% { background-position: 0% -100%; }
-            100% { background-position: 0% 0%; }
-        }
 
         * {
             margin: 0;
@@ -2167,7 +2150,7 @@
         }
 
         .section-title {
-            color: #ffffff;
+            color: var(--primary-color);
             text-align: center;
             margin-bottom: 2rem;
             font-size: 2rem;
@@ -2253,8 +2236,6 @@
 
   <div class="hero-container">
     
-    <canvas id="matrixCanvas" class="matrix-bg"></canvas>
-    
     <div class="scan-line"></div>
     
     <div class="hero-content">
@@ -2274,7 +2255,7 @@
 <section class="ascii-section">
   <div class="ascii-container">
       <pre class="ascii-art">
-/$$$$$$  /$$             /$$$$$$$$ /$$$$$$  /$$   /$$  /$$$$$$  /$$   /$$ /$$     /$$
+  /$$$$$$  /$$             /$$$$$$$$ /$$$$$$  /$$   /$$  /$$$$$$  /$$   /$$ /$$     /$$
 / $$ __ $$| $$            | $$_____//$$__  $$| $$$ | $$ /$$__  $$| $$  /$$/|  $$   /$$/
 | $$  \ $$| $$            | $$     | $$  \ $$| $$$$| $$| $$  \__/| $$ /$$/  \  $$ /$$/ 
 | $$$$$$$$| $$            | $$$$$  | $$$$$$$$| $$ $$ $$| $$ /$$$$| $$$$$/    \  $$$$/  
@@ -2283,7 +2264,9 @@
 | $$  | $$| $$$$$$$$      | $$     | $$  | $$| $$ \  $$|  $$$$$$/| $$ \  $$    | $$    
 |__/  |__/|________/      |__/     |__/  |__/|__/  \__/ \______/ |__/  \__/    |__/    
                                                                                              
-                                                                                                                                                             
+             
+
+
 uuuuuuu
 uu$$$$$$$$$$$uu
 uu$$$$$$$$$$$$$$$$$uu
@@ -2310,6 +2293,19 @@ u$$$uuu$$$$$$$$$uu ""$$$$$$$$$$$uuu$$$
 $$$$$$$$$$""""           ""$$$$$$$$$$$"
 "$$$$$"                      ""$$$$""
 $$$"                         $$$$"
+
+
+
+
+/$$$$$$$                       /$$      /$$$$$$          /$$ /$$          
+| $$__  $$                     | $$     /$$__  $$        | $$|__/          
+| $$  \ $$ /$$$$$$   /$$$$$$  /$$$$$$  | $$  \__//$$$$$$ | $$ /$$  /$$$$$$ 
+| $$$$$$$//$$__  $$ /$$__  $$|_  $$_/  | $$$$   /$$__  $$| $$| $$ /$$__  $$
+| $$____/| $$  \ $$| $$  \__/  | $$    | $$_/  | $$  \ $$| $$| $$| $$  \ $$
+| $$     | $$  | $$| $$        | $$ /$$| $$    | $$  | $$| $$| $$| $$  | $$
+| $$     |  $$$$$$/| $$        |  $$$$/| $$    |  $$$$$$/| $$| $$|  $$$$$$/
+|__/      \______/ |__/         \___/  |__/     \______/ |__/|__/ \______/ 
+                                                                          
       </pre>
   </div>
 </section>
@@ -2420,7 +2416,7 @@ $$$"                         $$$$"
       </div>
     </div>
     <div>
-      <h2 class="section-title">PARTNERS</h2>
+      <h2 class="section-title">MY PARTNERS</h2>
     </div>
     <div class="logo-slider">
     <div class="logo-slide-track">
@@ -2682,21 +2678,6 @@ document.addEventListener('DOMContentLoaded', () => {
         terminalWindow.classList.remove('active');
     });
 
-    // Command processing
-    const commands = {
-        help: 'Available commands: help, clear, about, contact, projects',
-        about: 'Developer information: [Your bio here]',
-        contact: 'Contact: email@example.com | GitHub: @username',
-        projects: 'Loading project list...',
-        clear: null,
-        echo: (args) => args.join(' '),
-        date: () => new Date().toLocaleString(),
-        ls: () => 'Documents  Images  Projects  Contact.txt  README.md',
-        version: () => 'Terminal v1.0.0 (Cyberpunk Edition)',
-        matrix: () => 'Initiating matrix sequence...',
-        system: () => 'OS: CyberOS\nKernel: 1.0.0\nUptime: ∞',
-        weather: () => 'Current weather: Cyberpunk rain, neon lights visible'
-    };
 
     // Command history functionality
     const commandHistory = [];
@@ -2757,62 +2738,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Matrix rain effect for mobile menu
-    let matrixCanvas;
-    if (window.innerWidth <= 768) {
-        matrixCanvas = document.createElement('canvas');
-        matrixCanvas.style.position = 'absolute';
-        matrixCanvas.style.top = '0';
-        matrixCanvas.style.left = '0';
-        matrixCanvas.style.width = '100%';
-        matrixCanvas.style.height = '100%';
-        matrixCanvas.style.zIndex = '-1';
-        matrixCanvas.style.opacity = '0.3';
-        navLinksContainer.appendChild(matrixCanvas);
-        
-        const setupMatrixRain = () => {
-            const ctx = matrixCanvas.getContext('2d');
-            matrixCanvas.width = navLinksContainer.offsetWidth;
-            matrixCanvas.height = navLinksContainer.offsetHeight;
+ 
 
-            const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
-            const matrixChars = matrix.split('');
-            const fontSize = 10;
-            const columns = matrixCanvas.width / fontSize;
-            const drops = Array(Math.floor(columns)).fill(1);
-
-            function drawMatrix() {
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-                ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
-                ctx.fillStyle = '#0F0';
-                ctx.font = fontSize + 'px monospace';
-
-                drops.forEach((drop, i) => {
-                    const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
-                    ctx.fillText(text, i * fontSize, drop * fontSize);
-                    if (drop * fontSize > matrixCanvas.height && Math.random() > 0.975) {
-                        drops[i] = 0;
-                    }
-                    drops[i]++;
-                });
-            }
-
-            return setInterval(drawMatrix, 33);
-        };
-
-        const matrixInterval = setupMatrixRain();
-
-        // Cleanup interval when needed
-        window.addEventListener('beforeunload', () => clearInterval(matrixInterval));
-    }
-
-    // Window resize handler
-    window.addEventListener('resize', () => {
-        if (window.innerWidth <= 768 && matrixCanvas) {
-            matrixCanvas.width = navLinksContainer.offsetWidth;
-            matrixCanvas.height = navLinksContainer.offsetHeight;
-        }
-    });
 
     // Glitch effect on hover for nav links
     navLinksItems.forEach(link => {
@@ -2907,45 +2834,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Start the hacker text animation
         typeHackerText();
-           // Matrix Background Effect
-           const canvas = document.getElementById('matrixCanvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+';
-        const fontSize = 10;
-        const columns = canvas.width / fontSize;
-
-        const drops = [];
-        for (let x = 0; x < columns; x++) {
-            drops[x] = 1;
-        }
-
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#00ff41';
-            ctx.font = `${fontSize}px monospace`;
-
-            for (let i = 0; i < drops.length; i++) {
-                const text = characters.charAt(Math.floor(Math.random() * characters.length));
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                    drops[i] = 0;
-                }
-                drops[i]++;
-            }
-        }
-
-        function animateMatrix() {
-            drawMatrix();
-            requestAnimationFrame(animateMatrix);
-        }
-
-        animateMatrix();
 
         // Typing Effect
         const title = document.getElementById('typedTitle');
@@ -2995,11 +2883,6 @@ document.addEventListener('DOMContentLoaded', () => {
             alert('Decrypting Professional Profile');
         });
 
-        // Responsive Matrix Canvas
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
               // Check if the user prefers reduced motion
               const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
         const slider = document.querySelector('.logo-slider');
