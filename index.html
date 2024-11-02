@@ -1231,7 +1231,7 @@
         :root {
             --primary-color: #00ff41;
             --secondary-color: #0f0;
-            --bg-color: #000;
+            --bg-color: #000000;
             --text-color: #00ff41;
         }
 
@@ -1280,28 +1280,6 @@
             flex-direction: column;
             align-items: center;
             transform-style: preserve-3d;
-        }
-
-        .profile-section {
-            position: relative;
-            margin-bottom: 30px;
-        }
-
-        .profile-img {
-            width: 250px;
-            height: 250px;
-            border-radius: 50%;
-            border: 4px solid var(--primary-color);
-            object-fit: cover;
-            transition: all 0.5s ease;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 0 20px rgba(0, 255, 65, 0.3);
-        }
-
-        .profile-img:hover {
-            transform: scale(1.05) rotateY(20deg);
-            box-shadow: 0 0 40px rgba(0, 255, 65, 0.6);
         }
 
         .hex-overlay {
@@ -1441,10 +1419,7 @@
                 width: 80%;
                 margin-bottom: 15px;
             }
-            .profile-img {
-                width: 200px;
-                height: 200px;
-            }
+
         }
         :root {
             --primary-color: #0f0;
@@ -1594,12 +1569,633 @@
                 justify-content: flex-end;
             }
         }
+        :root {
+            --neon-green: #0f0;
+            --dark-bg: #000;
+            --glitch-color: #0ff;
+            --matrix-color: #00ff00;
+            --terminal-green: #39ff14;
+            --error-red: #ff0033;
+            --warning-yellow: #ffff00;
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @keyframes glitch-anim {
+            0% {
+                clip-path: inset(71% 0 10% 0);
+                transform: translate(-2px, 2px);
+            }
+            20% {
+                clip-path: inset(29% 0 71% 0);
+                transform: translate(-1px, 1px);
+            }
+            40% {
+                clip-path: inset(57% 0 43% 0);
+                transform: translate(1px, -1px);
+            }
+            60% {
+                clip-path: inset(18% 0 82% 0);
+                transform: translate(2px, -2px);
+            }
+            80% {
+                clip-path: inset(93% 0 7% 0);
+                transform: translate(-1px, 2px);
+            }
+            100% {
+                clip-path: inset(100% 0 1% 0);
+                transform: translate(2px, -2px);
+            }
+        }
+
+        @keyframes matrix-rain {
+            0% { background-position: 0% -100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', monospace;
+        }
+
+        body {
+            background: var(--dark-bg);
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            background: var(--body);
+            border-bottom: 2px solid var(--neon-green);
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .logo {
+            color: var(--terminal-green);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: '>';
+            color: var(--neon-green);
+            animation: blink 1s infinite;
+        }
+
+        .logo-status {
+            position: absolute;
+            top: -15px;
+            left: 0;
+            font-size: 0.6rem;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover .logo-status {
+            opacity: 1;
+            transform: translateY(5px);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            color: var(--neon-green);
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover {
+            border: 1px solid var(--neon-green);
+            background: rgba(0, 255, 0, 0.1);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .nav-link::before {
+            content: '$';
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            opacity: 1;
+            color: var(--warning-yellow);
+        }
+
+        .nav-tooltip {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 0.5rem;
+            border: 1px solid var(--neon-green);
+            color: var(--terminal-green);
+            font-size: 0.8rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        .nav-link:hover + .nav-tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .terminal-window {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            width: 300px;
+            background: rgba(0, 0, 0, 0.95);
+            border: 1px solid var(--neon-green);
+            padding: 1rem;
+            transform: translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .terminal-window.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .terminal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--neon-green);
+        }
+
+        .terminal-title {
+            color: var(--terminal-green);
+            font-size: 0.8rem;
+        }
+
+        .terminal-close {
+            color: var(--error-red);
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-size: 1.2rem;
+        }
+
+        .terminal-content {
+            color: var(--terminal-green);
+            font-size: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .terminal-input {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .terminal-input::before {
+            content: '>';
+            color: var(--neon-green);
+        }
+
+        .terminal-input input {
+            background: transparent;
+            border: none;
+            color: var(--terminal-green);
+            font-family: inherit;
+            font-size: inherit;
+            width: 100%;
+            outline: none;
+        }
+
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 0.5rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .burger:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .burger-line {
+            width: 25px;
+            height: 2px;
+            background: var(--neon-green);
+            transition: all 0.3s ease;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 8px;
+            height: 8px;
+            background: var(--error-red);
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+
+        @media (max-width: 768px) {
+            .burger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 100%;
+                max-width: 300px;
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                padding: 5rem 2rem;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                backdrop-filter: blur(10px);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-link {
+                font-size: 1.2rem;
+                padding: 1rem;
+            }
+
+            .terminal-window {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .burger.active .burger-line:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .burger.active .burger-line:nth-child(2) {
+                opacity: 0;
+            }
+
+            .burger.active .burger-line:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+        .m41nfr4m3 {
+      font-family: 'Courier New', monospace;
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 2rem;
+      color: #0f0;
+      position: relative;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .m41nfr4m3::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: repeating-linear-gradient(
+        transparent 0px,
+        transparent 1px,
+        rgba(0, 255, 0, 0.1) 2px,
+        rgba(0, 255, 0, 0.1) 3px
+      );
+      animation: scan 10s linear infinite;
+      pointer-events: none;
+    }
+
+    .b1n4ry_r41n {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      color: #0f0;
+      font-size: 12px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .gr1d_c0nt41n3r {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pr0f1l3_fr4m3 {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      border: 2px solid #0f0;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .pr0f1l3_fr4m3::before,
+    .pr0f1l3_fr4m3::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border: 1px solid #0f0;
+      animation: glitchFrame 2s infinite;
+    }
+
+    .pr0f1l3_fr4m3::after {
+      animation-delay: 1s;
+    }
+
+    .pr0f1l3_fr4m3 img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+      z-index: 1;
+      filter: brightness(0.8) contrast(1.2);
+      mix-blend-mode: screen;
+    }
+
+    .pr0f1l3_sc4n {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: rgba(0, 255, 0, 0.5);
+      filter: blur(2px);
+      animation: scanline 2s linear infinite;
+      z-index: 2;
+    }
+
+    .h4x0r_1nf0 {
+      position: relative;
+      padding: 2rem;
+      border: 1px solid #0f0;
+      background: rgba(0, 15, 0, 0.2);
+      overflow: hidden;
+    }
+
+    .h4x0r_1nf0::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: 
+        radial-gradient(
+          circle at 50% 50%,
+          rgba(0, 255, 0, 0.1) 0%,
+          transparent 50%
+        );
+      animation: pulse 4s ease infinite;
+    }
+
+    .d3c0d3r_h34d3r {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .d3c0d3r_h34d3r::before {
+      content: "DECRYPTING...";
+      position: absolute;
+      top: -20px;
+      left: 0;
+      font-size: 0.8rem;
+      color: #0f0;
+      animation: blink 1s infinite;
+    }
+
+    .st4tus_b4r {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: flex;
+      gap: 10px;
+      font-size: 0.8rem;
+    }
+
+    .st4tus_1nd1c4t0r {
+      width: 10px;
+      height: 10px;
+      background: #0f0;
+      animation: blink 1s infinite;
+    }
+
+    .c0ns0l3_0utput {
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .c0ns0l3_0utput p {
+      margin: 0.5rem 0;
+      position: relative;
+      padding-left: 20px;
+    }
+
+    .c0ns0l3_0utput p::before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      color: #0f0;
+    }
+
+    .gl1tch_l1n3s {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.1;
+      z-index: 2;
+    }
+
+    .gl1tch_l1n3s::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #0f0;
+      animation: glitchLine 3s linear infinite;
+    }
+
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(300px); }
+    }
+
+    @keyframes glitchFrame {
+      0% { clip-path: inset(0 0 0 0); }
+      5% { clip-path: inset(10% 0 20% 0); }
+      10% { clip-path: inset(0 0 0 0); }
+      15% { clip-path: inset(50% 0 30% 0); }
+      20% { clip-path: inset(0 0 0 0); }
+    }
+
+    @keyframes scan {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(30px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.5; }
+      50% { transform: scale(1.5); opacity: 0.2; }
+      100% { transform: scale(1); opacity: 0.5; }
+    }
+
+    @keyframes glitchLine {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(100vh); }
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @media (max-width: 768px) {
+      .gr1d_c0nt41n3r {
+        grid-template-columns: 1fr;
+      }
+      
+      .pr0f1l3_fr4m3 {
+        width: 250px;
+        height: 250px;
+        margin: 0 auto;
+      }
+    }
     </style>
   </head>
   <body>
     <div class="progress">
       <div class="progress-bar"></div>
     </div>
+    <nav class="navbar">
+      <div class="nav-content">
+          <div class="logo-container">
+              <a href="#" class="logo">
+                  <span class="logo-text">AL_FANGKY</span>
+                  <span class="notification-dot"></span>
+              </a>
+              <div class="logo-status">SYSTEM_ONLINE</div>
+          </div>
+
+          <ul class="nav-links">
+              <li class="nav-item">
+                  <a href="#home" class="nav-link">cd ~</a>
+                  <div class="nav-tooltip">Return to Home Directory</div>
+              </li>
+              <li class="nav-item">
+                  <a href="#projects" class="nav-link">ls projects</a>
+                  <div class="nav-tooltip">View All Projects</div>
+              </li>
+              <li class="nav-item">
+                  <a href="#about" class="nav-link">whoami</a>
+                  <div class="nav-tooltip">About Developer</div>
+              </li>
+              <li class="nav-item">
+                  <a href="#contact" class="nav-link">contact -h</a>
+                  <div class="nav-tooltip">Contact Information</div>
+              </li>
+          </ul>
+
+          <div class="burger">
+              <div class="burger-line"></div>
+              <div class="burger-line"></div>
+              <div class="burger-line"></div>
+          </div>
+
+          <div class="terminal-window">
+              <div class="terminal-header">
+                  <span class="terminal-title">Terminal Session</span>
+                  <button class="terminal-close">×</button>
+              </div>
+              <div class="terminal-content">
+                  <div class="terminal-output"></div>
+                  <div class="terminal-input">
+                      <input type="text" placeholder="Type a command...">
+                  </div>
+              </div>
+          </div>
+      </div>
+  </nav>
 
 
   <div class="hero-container">
@@ -1608,11 +2204,7 @@
     <div class="scan-line"></div>
     
     <div class="hero-content">
-        <div class="profile-section">
-            <div class="hex-overlay"></div>
-            <img src="IMG_20220721_082132-removebg-preview.png" alt="Cyber Security Expert" class="profile-img">
-        </div>
-        
+
         <h1 class="title" id="typedTitle"></h1>
         
         <p class="subtitle">
@@ -1625,7 +2217,27 @@
         </div>
     </div>
 </div>
+<div class="m41nfr4m3">
+  <div class="b1n4ry_r41n" id="b1n4ry"></div>
+  <div class="gl1tch_l1n3s"></div>
+  
+  <div class="gr1d_c0nt41n3r">
+    <div class="pr0f1l3_fr4m3">
+      <div class="pr0f1l3_sc4n"></div>
+      <img src="IMG_20220721_082132-removebg-preview.png" alt="CLASSIFIED_IDENTITY">
+    </div>
 
+    <div class="h4x0r_1nf0">
+      <div class="st4tus_b4r">
+        <div class="st4tus_1nd1c4t0r"></div>
+        <span>UPTIME: <span id="upt1m3">00:00:00</span></span>
+      </div>
+      
+      <h2 class="d3c0d3r_h34d3r">[SYS_ADMIN]</h2>
+      <div id="t3rm1n4l" class="c0ns0l3_0utput"></div>
+    </div>
+  </div>
+</div>
     <main>
       <!-- About Section -->
       <div class="particles"></div>
@@ -1804,13 +2416,13 @@
           </div>
       </div>
       <div class="social-links">
-          <a href="#" target="_blank" title="GitHub">
+          <a href="https://github.com/alfangky?tab=overview&from=2024-11-01&to=2024-11-02" target="_blank" title="GitHub">
               <i class="ri-github-fill"></i>
           </a>
           <a href="#" target="_blank" title="LinkedIn">
               <i class="ri-linkedin-box-fill"></i>
           </a>
-          <a href="#" target="_blank" title="Instagram" class="instagram-link">
+          <a href="https://www.instagram.com/al_fangky/" target="_blank" title="Instagram" class="instagram-link">
               <i class="ri-instagram-fill"></i>
           </a>
           <a href="mailto:" title="Email">
@@ -1820,6 +2432,310 @@
   </footer>
 
     <script>
+          // Binary rain effect
+    function createBinaryRain() {
+      const binary = document.getElementById('b1n4ry');
+      const characters = '10';
+      let rain = '';
+      
+      for(let i = 0; i < 1000; i++) {
+        rain += characters.charAt(Math.floor(Math.random() * characters.length));
+      }
+      
+      binary.textContent = rain;
+      setTimeout(() => {
+        createBinaryRain();
+      }, 100);
+    }
+
+    // Uptime counter
+    function updateUptime() {
+      const uptimeElement = document.getElementById('upt1m3');
+      let seconds = 0;
+      
+      setInterval(() => {
+        seconds++;
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const secs = seconds % 60;
+        
+        uptimeElement.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    // Terminal text effect
+    function initializeTerminal() {
+      const terminal = document.getElementById('t3rm1n4l');
+      const text = `
+[SYSTEM_BOOT]: Initializing secure environment...
+[ACCESS_LEVEL]: Maximum Security Clearance
+[STATUS]: Authentication verified
+
+>_ Elite security specialist operating in the digital underground
+>_ Specializing in advanced penetration testing and zero-day research
+>_ Current mission: Hardening systems against quantum-based attacks
+
+[SKILLS_LOADED]:
+>_ Advanced exploit development
+>_ Malware analysis and reverse engineering
+>_ Neural network penetration
+>_ Quantum encryption protocols
+
+[CURRENT_OPERATIONS]:
+>_ Leading red team operations
+>_ Developing next-gen security frameworks
+>_ Training AI defense systems
+
+[WARNING]: Further details classified...
+[END_TRANSMISSION]
+      `;
+
+      const lines = text.trim().split('\n');
+      let currentLine = 0;
+
+      function typeNextLine() {
+        if (currentLine < lines.length) {
+          const line = lines[currentLine];
+          const p = document.createElement('p');
+          terminal.appendChild(p);
+          
+          let charIndex = 0;
+          function typeLine() {
+            if (charIndex < line.length) {
+              p.textContent += line[charIndex];
+              charIndex++;
+              setTimeout(typeLine, Math.random() * 50 + 20);
+            } else {
+              currentLine++;
+              setTimeout(typeNextLine, 100);
+            }
+          }
+          typeLine();
+        }
+      }
+
+      typeNextLine();
+    }
+
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+      createBinaryRain();
+      updateUptime();
+      initializeTerminal();
+    });
+      // Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', () => {
+    // Get DOM elements
+    const burger = document.querySelector('.burger');
+    const navLinksContainer = document.querySelector('.nav-links');
+    const navLinksItems = document.querySelectorAll('.nav-link');
+    const logo = document.querySelector('.logo');
+    const terminalWindow = document.querySelector('.terminal-window');
+    const terminalClose = document.querySelector('.terminal-close');
+    const terminalInput = document.querySelector('.terminal-input input');
+    const terminalOutput = document.querySelector('.terminal-output');
+
+    // Burger menu toggle
+    burger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        burger.classList.toggle('active');
+        navLinksContainer.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!burger.contains(e.target) && !navLinksContainer.contains(e.target)) {
+            burger.classList.remove('active');
+            navLinksContainer.classList.remove('active');
+        }
+    });
+
+    // Terminal functionality
+    logo.addEventListener('click', (e) => {
+        e.preventDefault();
+        terminalWindow.classList.toggle('active');
+    });
+
+    terminalClose.addEventListener('click', () => {
+        terminalWindow.classList.remove('active');
+    });
+
+    // Command processing
+    const commands = {
+        help: 'Available commands: help, clear, about, contact, projects',
+        about: 'Developer information: [Your bio here]',
+        contact: 'Contact: email@example.com | GitHub: @username',
+        projects: 'Loading project list...',
+        clear: null,
+        echo: (args) => args.join(' '),
+        date: () => new Date().toLocaleString(),
+        ls: () => 'Documents  Images  Projects  Contact.txt  README.md',
+        version: () => 'Terminal v1.0.0 (Cyberpunk Edition)',
+        matrix: () => 'Initiating matrix sequence...',
+        system: () => 'OS: CyberOS\nKernel: 1.0.0\nUptime: ∞',
+        weather: () => 'Current weather: Cyberpunk rain, neon lights visible'
+    };
+
+    // Command history functionality
+    const commandHistory = [];
+    let historyIndex = -1;
+
+    // Command input handler
+    terminalInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const commandLine = terminalInput.value.trim();
+            const [command, ...args] = commandLine.split(' ');
+            const output = document.createElement('div');
+            
+            // Add command to history
+            commandHistory.push(commandLine);
+            historyIndex = -1;
+            
+            output.innerHTML = `<span style="color: var(--neon-green)">></span> ${commandLine}\n`;
+            
+            if (command === 'clear') {
+                terminalOutput.innerHTML = '';
+            } else if (commands[command]) {
+                const response = typeof commands[command] === 'function' 
+                    ? commands[command](args)
+                    : commands[command];
+                output.innerHTML += `<span style="color: var(--terminal-green)">${response}</span>`;
+                terminalOutput.appendChild(output);
+            } else {
+                output.innerHTML += `<span style="color: var(--error-red)">Command not found: ${command}</span>`;
+                terminalOutput.appendChild(output);
+            }
+            
+            terminalInput.value = '';
+            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            
+            // Add glitch effect to new output
+            output.style.animation = 'glitch-anim 0.3s';
+            setTimeout(() => output.style.animation = '', 300);
+        }
+    });
+
+    // Command history navigation
+    terminalInput.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (historyIndex < commandHistory.length - 1) {
+                historyIndex++;
+                terminalInput.value = commandHistory[commandHistory.length - 1 - historyIndex];
+            }
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (historyIndex > 0) {
+                historyIndex--;
+                terminalInput.value = commandHistory[commandHistory.length - 1 - historyIndex];
+            } else if (historyIndex === 0) {
+                historyIndex = -1;
+                terminalInput.value = '';
+            }
+        }
+    });
+
+    // Matrix rain effect for mobile menu
+    let matrixCanvas;
+    if (window.innerWidth <= 768) {
+        matrixCanvas = document.createElement('canvas');
+        matrixCanvas.style.position = 'absolute';
+        matrixCanvas.style.top = '0';
+        matrixCanvas.style.left = '0';
+        matrixCanvas.style.width = '100%';
+        matrixCanvas.style.height = '100%';
+        matrixCanvas.style.zIndex = '-1';
+        matrixCanvas.style.opacity = '0.3';
+        navLinksContainer.appendChild(matrixCanvas);
+        
+        const setupMatrixRain = () => {
+            const ctx = matrixCanvas.getContext('2d');
+            matrixCanvas.width = navLinksContainer.offsetWidth;
+            matrixCanvas.height = navLinksContainer.offsetHeight;
+
+            const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%";
+            const matrixChars = matrix.split('');
+            const fontSize = 10;
+            const columns = matrixCanvas.width / fontSize;
+            const drops = Array(Math.floor(columns)).fill(1);
+
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+                ctx.fillStyle = '#0F0';
+                ctx.font = fontSize + 'px monospace';
+
+                drops.forEach((drop, i) => {
+                    const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+                    ctx.fillText(text, i * fontSize, drop * fontSize);
+                    if (drop * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                });
+            }
+
+            return setInterval(drawMatrix, 33);
+        };
+
+        const matrixInterval = setupMatrixRain();
+
+        // Cleanup interval when needed
+        window.addEventListener('beforeunload', () => clearInterval(matrixInterval));
+    }
+
+    // Window resize handler
+    window.addEventListener('resize', () => {
+        if (window.innerWidth <= 768 && matrixCanvas) {
+            matrixCanvas.width = navLinksContainer.offsetWidth;
+            matrixCanvas.height = navLinksContainer.offsetHeight;
+        }
+    });
+
+    // Glitch effect on hover for nav links
+    navLinksItems.forEach(link => {
+        link.addEventListener('mouseover', () => {
+            link.style.animation = 'glitch-anim 0.3s infinite';
+        });
+        
+        link.addEventListener('mouseout', () => {
+            link.style.animation = '';
+        });
+    });
+
+    // Hide navbar on scroll
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const navbar = document.querySelector('.navbar');
+        
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            navbar.style.transform = 'translateY(-100%)';
+        } else {
+            navbar.style.transform = 'translateY(0)';
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Konami code Easter egg
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                document.body.style.animation = 'matrix-rain 2s linear';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                    konamiIndex = 0;
+                }, 2000);
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+});
               const hackTexts = [
             "Initializing neural network...",
             "Bypassing firewall...", 
@@ -1911,7 +2827,7 @@
 
         // Typing Effect
         const title = document.getElementById('typedTitle');
-        const fullText = "[ AL FANGKY ]";
+        const fullText = "[ 404 not found ]";
         let index = 0;
 
         function typeTitle() {
